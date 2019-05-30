@@ -1,0 +1,16 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{xparse}
+\usepackage{tikz,tkz-euclide}
+\begin{document}
+\begin{tikzpicture}[use Hobby shortcut,scale=1.2]
+	\filldraw[fill=gray!40!white, draw=black, ultra thick] (1,0) -- (4,0)
+    -- (4, 4)
+    -- (0, 4)
+	-- (0,1)
+    arc (90:0:1);
+    
+    \foreach \f in {1,2,...,10}{\draw[thick] plot[draw=black] file {tikz_scripts/data/curv_u_\f.txt};}
+    \foreach \f in {1,2,...,10}{\draw[thick] plot[draw=black] file {tikz_scripts/data/curv_v_\f.txt};}
+\end{tikzpicture}
+\end{document}

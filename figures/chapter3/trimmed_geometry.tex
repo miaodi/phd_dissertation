@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{xparse}
+\usepackage{tikz,tkz-euclide}
+
+\begin{document}
+\begin{tikzpicture}[use Hobby shortcut,scale=1.2]
+	\filldraw[fill=gray!40!white, draw=black, ultra thick] (1,0) -- (4,0)
+    -- (4, 4)
+    -- (0, 4)
+	-- (0,1)
+    arc (90:0:1);
+    \draw[name path=curve1,draw=black, ultra thick] (0,4) -- (0,1) arc (90:0:1) -- (4,0);
+    \foreach \i in {1,...,10}
+    {
+        \path [name path=line\i](.4*\i,4)--(.4*\i,0);
+        \draw [name intersections={of=curve1 and line\i}, black, thick] (.4* \i,4) -- (intersection-1);
+    }
+    \foreach \i in {1,...,10}
+    {
+        \path [name path=line\i](4,.4*\i)--(0,.4*\i);
+        \draw [name intersections={of=curve1 and line\i}, black, thick] (4,.4*\i) -- (intersection-1);
+    }
+\end{tikzpicture}
+\end{document}

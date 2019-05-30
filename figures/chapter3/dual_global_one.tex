@@ -1,0 +1,25 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{../mystyle}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[axis lines=none,xmin=-0.03,xmax=1.03,ymin=-0.777778,ymax=2, scale only axis,
+	width=0.6\textwidth,
+        height=0.2\textwidth]
+
+\addplot+[no markers, smooth,ultra thick, solid, b1] table [y=N4, x=x]{dualbasis_global.dat};
+
+\addplot+[mark=*, solid, mark options={fill=white},mark size=2,color=black,ultra thick] plot coordinates {
+			        (0,    0)
+			        (1.0/5,   0)
+			        (2.0/5,   0)
+			        (3.0/5,    0)
+			        (4.0/5,    0)
+			        (1,    0)};
+
+
+\end{axis}
+\end{tikzpicture}
+\end{document}

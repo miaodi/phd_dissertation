@@ -1,0 +1,35 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{../mystyle}
+
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[axis lines=none,xmin=-0.03,xmax=1.03,ymin=-0.1,ymax=1, scale only axis,
+        width=0.6\textwidth,
+        height=0.2\textwidth]
+
+\addplot+[no markers,ultra thick,o1, opacity=0.2] table [y=N0, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=0:.2,gray, opacity=0.2] table [y=N1, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.2:.4,gray, opacity=0.2] table [y=N1, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=0:.2,magenta, opacity=0.2] table [y=N2, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.2:.6,magenta, opacity=0.2] table [y=N2, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,b1,solid] table [y=N3, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.4:.8,red, opacity=0.2,solid] table [y=N4, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.8:1,solid,red, opacity=0.2] table [y=N4, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.6:.8,solid,g1, opacity=0.2] table [y=N5, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.8:1,solid,g1, opacity=0.2] table [y=N5, x=x]{basis.dat};
+\addplot+[no markers,ultra thick,restrict x to domain=.8:.9999,y1, opacity=0.2] table [y=N6, x=x]{basis.dat};
+\addplot+[mark=*,mark options={fill=white},mark size=2,color=black,ultra thick] plot coordinates {
+        (0,    0)
+        (1.0/5,   0)
+        (2.0/5,   0)
+        (3.0/5,    0)
+        (4.0/5,    0)
+        (1,    0)};
+
+\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -15,18 +15,20 @@
 %  Setup BYU thesis format
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{byustyle}
+\usepackage{mystyle}
+\usepackage[noadjust]{cite}
 % Setup the byu style sheet
 \byustylesetup{%
     %
     isdissertation = true,            % false for MS thesis, true for PhD dissertation
 	%
     % Definitions of names needed in thesis/dissertation
-    deptname          = Department of Civil ann Environmental Engineering,
+    deptname          = Department of Civil and Environmental Engineering,
     committeechairman = Michael A. Scott,
     committeemembera  = Michael J. Borden,
-    committeememberb  = Brian A. Mazzeo,
-	committeememberc  = Brad L. Hutchings, % needed for dissertation, ignored for thesis
-	committeememberd  = Steven M. Schultz,    % needed for dissertation, ignored for thesis
+    committeememberb  = Derek C. Thomas,
+	committeememberc  = Emily Evans, % needed for dissertation, ignored for thesis
+	committeememberd  = David W. Jensen,    % needed for dissertation, ignored for thesis
     %
     %Change true/false to shorten for proofreading purposes
     noabstract = false,         % Do not show the abstract page
@@ -186,17 +188,20 @@
 
 % Include chapters of the thesis here: 
 % The inludes are populated by example chapters
-\include{exampleFiles//chapter1}
-\include{exampleFiles/chapter2}
+\include{exampleFiles/chapter1}
+% \include{exampleFiles/chapter2}
+% \include{exampleFiles/chapter3}
+
+% \include{exampleFiles/chapter6}
 
 %%%%%%%%%%%%% begin Bibliography %%%%%%%%%%%%%%%%%
 \cleardoublepage
 \bibliographystyle{IEEEtran}
-\bibliography{exampleFiles/refs} % Use your own BibTex file here
+\bibliography{exampleFiles/mybibfile} % Use your own BibTex file here
 
 % Include appendix sections here: (or comment these lines out to have no appendices)
 \appendix
-\include{exampleFiles/appendixa}
-\include{exampleFiles/appendixb}
+% \include{exampleFiles/appendixa}
+% \include{exampleFiles/appendixb}
 
 \end{document}

@@ -1,0 +1,154 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\begin{document}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        legend columns=4,
+    	legend style={at={(1,1.2)}, nodes={scale=0.8, transform shape}, column sep=.2cm},
+        xlabel=$h$,
+        ylabel=${\|u_{}-u^{h}\|_{H^2_*}}/{\|u_{}\|_{H^2_*}}$ 
+    ]
+
+
+    \addplot [color=red,mark=triangle] plot coordinates {
+
+        (.5,    0.984462)
+        (.25,   0.57064)
+        (.125,   0.29491)
+        (.0625,  0.124681)
+        (0.03125,   0.0622175)
+        (0.015625,  0.0306618)
+    };
+
+    \addplot [color=blue,mark=triangle] plot coordinates {
+
+        (.5,    0.73507)
+        (.25,   0.330168)
+        (.125,  0.0893942)
+        (.0625,   0.00996365)
+        (0.03125,    0.00251387)
+        (0.015625,  0.000536017)
+    };
+
+    \addplot [color=black,mark=triangle] plot coordinates {
+
+        (.5,     0.737524)
+        (.25,  0.227844)
+        (.125,  0.0146347)
+        (.0625,  0.00359733)
+        (0.03125,  0.000183658)
+        (0.015625,  1.17426e-05)
+    };
+
+    \addplot [color=green,mark=triangle] plot coordinates {
+
+        (.5,   0.467302)
+        (.25,  0.237741)
+        (.125,   0.020301)
+        (.0625,   0.000121442)
+        (0.03125,   1.49368e-05 )
+        (0.015625,  6.91432e-06 )
+    };
+
+    
+    \addplot [color=red,mark=triangle, dashed] plot coordinates {
+
+        (.5,    0.984462)
+        (.25,   0.566638)
+        (.125,   0.294139)
+        (.0625,   0.146838)
+        (0.03125,   0.076735)
+        (0.015625,  0.0388408)
+    };
+
+    \addplot [color=blue,mark=triangle, dashed] plot coordinates {
+
+        (.5,    0.73507 )
+        (.25,   0.316245)
+        (.125,   0.102614)
+        (.0625,   0.0163837)
+        (0.03125,   0.00280983 )
+        (0.015625,  0.00055078 )
+    };
+
+    \addplot [color=black,mark=triangle, dashed] plot coordinates {
+
+        (.5,    0.737524 )
+        (.25,   0.239446 )
+        (.125,  0.0120767)
+        (.0625,   0.00340827 )
+        (0.03125,  0.000525168 )
+        (0.015625, 7.06666e-05 )
+    };
+
+    \addplot [color=green,mark=triangle, dashed] plot coordinates {
+
+        (.5,    0.467299)
+        (.25,   0.224219)
+        (.125,  0.0154553)
+        (.0625,  0.000614266 )
+        (0.03125, 2.33943e-05)
+        (0.015625, 8.5008e-07)
+    };
+
+    \addplot [black] plot coordinates {
+
+        (0.03125,     0.04)
+        (0.015625,    0.02)
+    } node[pos=0.5,anchor=north]{$1$};
+
+    \addplot [black] plot coordinates {
+
+        (0.03125,     0.0016)
+        (0.015625,    0.0004)
+    } node[pos=0.5,anchor=north]{$2$};
+
+    \addplot [black] plot coordinates {
+
+        (0.03125,     4e-4)
+        (0.015625,    5e-5)
+    } node[pos=0.5,anchor=north]{$3$};
+
+    \addplot [black] plot coordinates {
+
+        (0.03125,     9.6000e-06)
+        (0.015625,    6e-7)
+    } node[pos=0.5,anchor=north]{$4$};
+
+    \legend{G-$Q_2$\\G-$Q_3$\\G-$Q_4$\\G-$Q_5$\\B-$Q_2$\\B-$Q_3$\\B-$Q_4$\\B-$Q_5$\\}
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\end{document}
+
+
+
+% 1.1098   0.984462
+% 0.508243   0.57064
+% 0.179264   0.29491
+% 0.0494358   0.124681
+% 0.0128027   0.0622175
+% 0.00170833   0.0306618
+
+% 0.738315   0.73507
+% 0.274125   0.330168
+% 0.0438196   0.0893942
+% 0.00100768   0.00996365
+% 7.91825e-05   0.00251387
+% 3.00839e-06   0.000536017
+
+% 0.709611   0.737524
+% 0.243391   0.227844
+% 0.00390737   0.0146347
+% 0.000299061   0.00359733
+% 3.69165e-06   0.000183658
+% 3.6413e-08   1.17426e-05
+
+% 0.277756   0.467302
+% 0.14141   0.237741
+% 0.00375236   0.020301
+% 4.49226e-06   0.000121442
+% 1.91177e-07   1.49368e-05
+% 2.37417e-08   6.91432e-06

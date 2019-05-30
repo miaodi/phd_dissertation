@@ -1,0 +1,61 @@
+\documentclass{standalone}
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{tikz,tkz-euclide}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+  \begin{scope}[shift={(-.2,-.2)}]
+    \draw[->] (0,0) -- (.5,0) node[right]{$x$};
+    \draw[->] (0,0) -- (0,.5) node[left]{$y$};
+  \end{scope}
+
+    \coordinate(Origin) at ($ (2,{2/3*sqrt(3)}) $);
+
+    \draw[thick] (0,0) -- (4,0) coordinate[midway](M1)-- ($ (2,{2*sqrt(3)}) $)
+      coordinate[midway](M2)-- cycle  coordinate[midway](M3);
+    \draw [purples1] (Origin) -- (M1) node [midway, left, black] {$\Gamma_{12}$}  node [midway, right, black] {$\Gamma_{21}$};
+    \draw [purples1] (Origin) -- (M2) node [pos=.45, above=.1, black] {$\Gamma_{23}$}  node [pos=.55, below=.1, black] {$\Gamma_{32}$};
+    \draw [purples1] (Origin) -- (M3) node [pos=.45, above=.1, black] {$\Gamma_{31}$}  node [pos=.55, below=.1, black] {$\Gamma_{13}$};
+
+    \node [below right] at (Origin) {$v_1$};
+    \node[mark size=3pt,color=purples4] at (Origin) {\pgfuseplotmark{*}};
+  
+    % \node [below right] at (M1) {$v_2$};
+    % \node[mark size=3pt,color=purples4] at (M1) {\pgfuseplotmark{*}};
+    % \node [above right] at (M2) {$v_3$};
+    % \node[mark size=3pt,color=purples4] at (M2) {\pgfuseplotmark{*}};
+    % \node [above left] at (M3) {$v_4$};
+    % \node[mark size=3pt,color=purples4] at (M3) {\pgfuseplotmark{*}};
+    
+    \node (Omega1) at (1.2,.8) {$\Omega_1$};
+    \node (Omega2)  at (2.8,.8) {$\Omega_2$};
+    \node at (2,2) {$\Omega_3$};
+    \node at (1,2.2) {$\partial\Omega$};
+
+  \begin{scope}[shift={(-4,2)},rotate=10]
+    \draw (0,0) rectangle (1.6,1.6);
+    \draw[purples1,ultra thick] (1.6,0) -- (1.6,1.6);
+    \begin{scope}[shift={(.2,.2)}]
+      \draw[->] (0,0) -- (.5,0) node[above]{$\xi^{(1)}$};
+      \draw[->] (0,0) -- (0,.5) node[above]{$\eta{(1)}$};
+    \end{scope}
+    \node (hOmega1) at (.8,.8) {$\hat{\Omega}_1$} ;
+    \node (hedge1) at (1.6,.8) {};
+  \end{scope}
+  \draw[->,>=stealth,thick] (hOmega1) to [out=30,in=150] node[pos = .5, right=.4]{$\mathbf{F}_{1}$} (Omega1);
+
+  \begin{scope}[shift={(-2.5,0)},rotate=-10]
+    \draw (0,0) rectangle (1.6,1.6);
+    \draw[purples1,ultra thick] (0,0) -- (0,1.6);
+    \begin{scope}[shift={(.2,.2)}]
+      \draw[->] (0,0) -- (.5,0) node[above]{$\xi^{(2)}$};
+      \draw[->] (0,0) -- (0,.5) node[above right=-.15]{$\eta{(2)}$};
+    \end{scope}
+    \node (hOmega2) at (.8,.8) {$\hat{\Omega}_2$} ;
+    \node (hedge2) at (0,.8) {};
+  \end{scope}
+  \draw[->,>=stealth,thick] (hOmega2) to [out=-55,in=-125] node[pos = .5, below]{$\mathbf{F}_{2}$} (Omega2);
+
+  \draw[->,>=stealth,thick] (hedge1) to [out=-50,in=120] node[pos = .5, right]{$\mathbf{E}_{12}$} (hedge2);  
+\end{tikzpicture}
+\end{document}

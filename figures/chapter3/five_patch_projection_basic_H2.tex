@@ -1,0 +1,172 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\begin{document}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        legend columns=4,
+    	legend style={at={(1,1.2)}, nodes={scale=0.8, transform shape}, column sep=.1cm},
+        xlabel=$h$,
+        ylabel=${\|u_{}-u^{h}\|_{H^2_*}}/{\|u_{}\|_{H^2_*}}$ 
+    ]
+
+    % L2 error: 0.714789H2 error: 0.92952
+    % L2 error: 0.639705H2 error: 0.786507
+    % L2 error: 0.0424482H2 error: 0.23874
+    % L2 error: 0.00807666H2 error: 0.104899
+    % L2 error: 0.00168509H2 error: 0.048567
+    
+    % L2 error: 0.726748H2 error: 0.877915
+    % L2 error: 0.0634845H2 error: 0.261873
+    % L2 error: 0.00567489H2 error: 0.0698219
+    % L2 error: 0.000176212H2 error: 0.0095109
+    % L2 error: 5.39981e-06H2 error: 0.00161265
+    
+    % L2 error: 0.170837H2 error: 0.455545
+    % L2 error: 0.0682008H2 error: 0.256527
+    % L2 error: 0.000233381H2 error: 0.00558115
+    % L2 error: 6.1899e-06H2 error: 0.000628332
+    % L2 error: 1.30055e-07H2 error: 6.2662e-05
+    
+    % L2 error: 0.108959H2 error: 0.359737
+    % L2 error: 0.00351144H2 error: 0.0253264
+    % L2 error: 0.000115963H2 error: 0.00309076
+    % L2 error: 7.23675e-07H2 error: 8.40285e-05
+    % L2 error: 1.52885e-08H2 error: 7.11817e-06
+
+    \addplot [color=red,mark=triangle] plot coordinates {
+
+
+        (.25,   0.92952)
+        (.125,   0.786507)
+        (.0625,   0.23874)
+        (0.03125,   0.104899)
+        (0.015625,  0.048567)
+    };
+
+    
+    \addplot [color=blue,mark=triangle] plot coordinates {
+
+
+        (.25,       0.877915)
+        (.125,      0.261873)
+        (.0625,     0.0698219)
+        (0.03125,   0.0095109)
+        (0.015625,  0.00161265)
+    };
+
+    \addplot [color=black,mark=triangle] plot coordinates {
+
+
+        (.25,       0.455764)
+        (.125,      0.257802)
+        (.0625,     0.00558481)
+        (0.03125,   0.000628332)
+        (0.015625,  6.2662e-05)
+    };
+
+    \addplot [color=green,mark=triangle] plot coordinates {
+
+
+        (.25,       0.359737)
+        (.125,      0.0253871)
+        (.0625,     0.00310925)
+        (0.03125,   8.40285e-05)
+        (0.015625,  7.11817e-06)
+    };
+
+    
+    \addplot [color=red,mark=triangle, dashed] plot coordinates {
+
+        (.25,       0.905119)
+        (.125,      0.502756)
+        (.0625,     0.229302)
+        (0.03125,   0.102333)
+        (0.015625,  0.0480131)
+    };
+
+    \addplot [color=blue,mark=triangle, dashed] plot coordinates {
+
+
+        (.25,       0.775019)
+        (.125,      0.186196)
+        (.0625,     0.0330064)
+        (0.03125,   0.00621938)
+        (0.015625,  0.00140077 )
+    };
+
+    \addplot [color=black,mark=triangle, dashed] plot coordinates {
+
+
+        (.25,   0.449573)
+        (.125,      0.0848983)
+        (.0625,     0.00500784)
+        (0.03125,   0.000486555)
+        (0.015625,  5.75042e-05)
+    };
+
+    \addplot [color=green,mark=triangle, dashed] plot coordinates {
+
+
+        (.25,       0.256437)
+        (.125,      0.0164084)
+        (.0625,     0.00113918)
+        (0.03125,   4.79673e-05)
+        (0.015625,  2.60337e-06)
+    };
+
+    \addplot [black] plot coordinates {
+
+        (.03125,    0.08)
+        (0.015625,    .04)
+    } node[pos=0.5,anchor=north]{$1$};
+
+    \addplot [black] plot coordinates {
+
+        (.03125,    0.0040)
+        (0.015625,    .001)
+    } node[pos=0.5,anchor=north]{$2$};
+
+    \addplot [black] plot coordinates {
+
+        (.03125,    3.2000e-04)
+        (0.015625,  4e-5)
+    } node[pos=0.5,anchor=north]{$3$};
+
+    \addplot [black] plot coordinates {
+
+        (.03125,    3.2000e-05)
+        (0.015625,   2e-6)
+    } node[pos=0.5,anchor=north]{$4$};
+
+    \legend{OG-$Q_2$\\OG-$Q_3$\\OG-$Q_4$\\OG-$Q_5$\\OB-$Q_2$\\OB-$Q_3$\\OB-$Q_4$\\OB-$Q_5$\\}
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\end{document}
+
+
+% L2 error: 0.72267H2 error: 0.902713
+% L2 error: 0.192461H2 error: 0.502235
+% L2 error: 0.0380292H2 error: 0.229002
+% L2 error: 0.00745881H2 error: 0.102286
+% L2 error: 0.00163237H2 error: 0.0480075
+
+% L2 error: 0.49209H2 error: 0.775129
+% L2 error: 0.0336437H2 error: 0.186168
+% L2 error: 0.00148203H2 error: 0.0330219
+% L2 error: 5.52956e-05H2 error: 0.00621907
+% L2 error: 2.66617e-06H2 error: 0.00139961
+
+% L2 error: 0.167686H2 error: 0.449255
+% L2 error: 0.0199423H2 error: 0.0850022
+% L2 error: 0.000193281H2 error: 0.00500098
+% L2 error: 3.66953e-06H2 error: 0.000483589
+% L2 error: 9.51876e-08H2 error: 5.58378e-05
+
+% L2 error: 0.0734719H2 error: 0.25685
+% L2 error: 0.00221171H2 error: 0.0164697
+% L2 error: 4.76696e-05H2 error: 0.00113819
+% L2 error: 3.81046e-07H2 error: 4.79673e-05
+% L2 error: 4.6784e-09H2 error: 2.60337e-06

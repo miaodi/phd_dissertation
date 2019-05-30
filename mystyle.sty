@@ -1,0 +1,105 @@
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{mystyle}[2010/07/28 BBischof's custom LaTeX style]
+
+\usepackage{colortbl,xcolor}
+\usepackage{amssymb,amsmath,amsfonts,amsthm,mathrsfs,mathtools}
+\usepackage{subcaption}
+\usepackage{placeins} %% FloatBarrier
+\usepackage{newtxmath}
+\usepackage{xfrac} %% sfrac
+\usepackage{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{relsize}
+\usepackage{array,calc}
+\usepackage{blkarray}
+\usepackage{caption,tabularx,booktabs}
+\usepackage{arydshln} %block matrix line
+\usepackage{multirow} %multirow in matrix
+\usepackage{siunitx}
+
+
+\newcommand{\supp}[1]{\mathop{\mathsf{supp}}(#1)}
+\newcommand{\Bezier}{{B\'{e}zier} }
+\newcommand{\R}{{\mathbb{R}} }
+\newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{assumption}{Assumption}
+\newcommand\vx{\mathbf{x}}
+\newcommand\vy{\mathbf{y}}
+\newcommand\vz{\mathbf{z}}
+\newcommand\vu{\mathbf{u}}
+\newcommand\vv{\mathbf{v}}
+\newcommand\vg{\mathbf{g}}
+\newcommand\ve{\mathbf{e}}
+\newcommand\ma{\mathbf{A}}
+\newcommand\mi{\mathbf{I}}
+\newcommand\mn{\mathbf{N}}
+
+
+\DeclareMathOperator{\spn}{\mathsf{span}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\quasii}[1]{\mathcal{I}_\mathcal{#1}}
+\newcommand{\quasiid}[1]{\mathcal{I}_{\hat{\mathcal{#1}}}}
+\DeclareMathOperator*{\A}{ \mathlarger{\mathlarger{\mathlarger{\boldsymbol{\mathsf{A}}}}} }
+\DeclareMathOperator{\Ima}{Im}
+
+
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{hobby}
+\usetikzlibrary{intersections}
+
+\definecolor{nine-color-1}{RGB}{155,81,250}
+\definecolor{nine-color-2}{RGB}{104,149,239}
+\definecolor{nine-color-3}{RGB}{166,219,160}
+\definecolor{nine-color-4}{RGB}{81,234,232}
+\definecolor{nine-color-5}{RGB}{175,179,199}
+\definecolor{nine-color-6}{RGB}{246,134,115}
+\definecolor{nine-color-7}{RGB}{90,174,97}
+\definecolor{nine-color-8}{RGB}{222,92,192}
+\definecolor{nine-color-9}{RGB}{155,81,250}
+\definecolor{purples1}{RGB}{247,104,161}
+\definecolor{purples2}{RGB}{104,149,239}
+\definecolor{purples3}{RGB}{23,215,239}
+\definecolor{purples4}{RGB}{81,234,232}
+\definecolor{purples5}{RGB}{175,179,199}
+\definecolor{purples6}{RGB}{246,134,115}
+\definecolor{purples7}{RGB}{250,101,76}
+\definecolor{purples8}{RGB}{222,92,192}
+\definecolor{purples9}{RGB}{155,81,250}
+\pgfplotscreateplotcyclelist{colorbrewer-nine-color}{
+{nine-color-1},
+{nine-color-2},
+{nine-color-3},
+{nine-color-4},
+{nine-color-5},
+{nine-color-6},
+{nine-color-7},
+{nine-color-8},
+{nine-color-9},
+}
+
+
+\definecolor{r1}{RGB}{204,69,81}
+\definecolor{y1}{RGB}{241,201,85}
+\definecolor{g1}{RGB}{126,195,45}
+\definecolor{o1}{RGB}{233,90,27}
+\definecolor{b1}{RGB}{0,87,184}
+\definecolor{hred}{HTML}{e94b3c}
+\definecolor{hblue}{HTML}{6f9fd8}
+
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,hred,solid,line width = 1.2pt](0,0) -- (5mm,0);}}}
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-,hblue,solid,line width = 1.2pt](0,0) -- (5mm,0);}}}
+
+\endinput

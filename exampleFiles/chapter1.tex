@@ -1,75 +1,36 @@
 \chapter{Introduction}
 \label{chp:chapter1}
-This is an example of the introduction. It's pretty simple and shows off
-some of the basic commands.
+\graphicspath{{figures/}{figures/chapter1/}}
+\pgfplotsset{
+    table/search path={{figures/chapter1/data},{data}},
+}
 
-\section{First Section}
-This part shows how you can divide things into sections.
+Isogeometric analysis, introduced by Hughes et al.~\cite{HUGHES20054135}, leverages computer aided design (CAD) representations directly in finite element analysis. It has been shown that this approach can alleviate the model preparation burden of going from a CAD design to an analysis model and improve overall solution accuracy and robustness~\cite{bazilevs2006isogeometric, da2011some, da2014mathematical}. Additionally, the higher-order smoothness inherent in CAD basis functions make it possible to solve higher-order partial differential equations, e.g. the biharmonic equation~\cite{kapl_isogeometric_2015, kapl_isogeometric_2017}, the Kirchhoff-Love shell problem~\cite{kiendl2009isogeometric, kiendl2010bending, kiendl2015isogeometric} and the Cahn-Hilliard equation~\cite{gomez2008isogeometric, borden2014higher} directly without resorting to complex mixed discretization schemes.\par
 
-\subsection{First Subsection}
-Also into subsections.
+CAD models are often built from collections of non-uniform rational B-splines (NURBS). Adjacent NURBS patches often have inconsistent knot layouts, different parameterizations, and may not even be physically connected. Additionally, trimming curves~\cite{kim2009isogeometric, schmidt2012isogeometric} are often employed to further simplify the design process and to extend the range of objects that can be modeled by NURBS at the expense of further complicating the underlying parameterization of the object. While usually not an issue from a design perspective, these inconsistencies in the NURBS patch layout, including trimming, must be accommodated in the isogeometric model to achieve accurate simulation results. As shown in Figure~\ref{fig:geometries}, two primary approaches are often employed. First, the exact trimmed CAD model, shown in Figure~\ref{fig:geometries} in the middle, is used directly in the simulation~\cite{schmidt2012isogeometric}. To accomplish this requires additional algorithms for handling cut cells and the weak imposition of boundary conditions and may result in reduced solution accuracy and robustness. Second, the CAD model is reparameterized~\cite{xu2014high}, as shown in Figure~\ref{fig:geometries} on the right, into a watertight spline representation like multi-patch NURBS, subdivision surfaces~\cite{peters2008subdivision}, or T-splines~\cite{sederberg_t-splines_2003} which can then be used as a basis for analysis directly. The reparameterization process often results in more accurate and robust simulation results but is only semi-automatic using prevailing approaches. In both cases, existing techniques are primarily surface-based due to the predominance of surface-based CAD descriptions.
 
-\subsection{Second Subsection}
-Which really helps organization and automatically gets added to the Table
-of Contents and gets linked to by the hyperref package.
-
-\section{Citation Example}
-One of the greatest parts about \LaTeX\ is BibTeX. You can just call
-the $\backslash$cite command and it will organize the whole references section for you as long as there is an entry in the refs.bib file (or whichever other .bib file you tell it to use; see the source for master.tex).
-Here is an example of citing previous works
-\cite{guy06best,guy06second}.
-
-\section{Fixed Width Figure Example} \label{sec:intro_figure_example}
-This part also shows how to include a basic figure like the ones
-shown in Figures~\ref{fig:intro_stuff2} and \ref{fig:intro_stuff}. %Figure~\ref{fig:example} illustrates the use of a figure placed in landscape.
-\begin{figure}[t]
-  \centering
-  \includegraphics[width = 2in]{exampleFiles/stuff}
-  \caption[Example small width figure]{
-Example small width figure, showing how to use the width option.}
-%
-  \label{fig:intro_stuff2}
+\begin{figure}[ht]
+	\captionsetup[subfigure]{labelformat=empty, font = footnotesize}
+	\centering
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includestandalone[scale=.7]{geometry}
+		\caption{A geometry}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includestandalone[scale=.7]{trimmed_geometry}
+		\caption{Trimmed model}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.32\textwidth}
+		\centering
+		\includestandalone[scale=.7]{reparameterized_geometry}
+		\caption{Reparameterized model}
+	\end{subfigure}
+	\caption{A geometry and two modelling strategies: trimming and reparameterization.}
+	\label{fig:geometries}
 \end{figure}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=5.5in]{exampleFiles/stuff}
-  \caption[Example fixed width figure]{
-This figure is just a simple figure with a width set at 5.5~in. An example of a
-figure whose size depends on the width of the page is given in
-Figure \ref{fig:appendix_some_pic} in Section~\ref{sec:appendixa_figure_example} of Appendix~\ref{apdx:appendixa}.}
-%
-  \label{fig:intro_stuff}
-\end{figure}
+From the analysis perspective, the main challenge for conducting finite element analysis over a geometry consisting of multiple spline patches is how to efficiently and accurately exchange information among different patches. In this dissertation, we focus on the \textit{dual mortar method}, which can robustly apply constraints over intersections of reparameterized multi-patch geometries.  
 
-%\begin{sidewaysfigure}[p]
-%\includegraphics[scale=0.8]{examplegraphic}
-%\caption{An example of a landscape graphic.}
-%\label{fig:example}
-%\end{sidewaysfigure}
-
-\section{Math and Equation Example, Where the Heading Is Made so Long That It Extends onto a Second Line}
-Here is how to use inline math mode to define lambda like this,
-$\lambda$, and how to declare Equations~\eqref{eqn:definition_Ix}
-and~\eqref{eqn:definition_Iy}
-
-\begin{equation} \label{eqn:definition_Ix}
-I_x(x,y) = \pd{I(x,y)}{x},
-\end{equation}
-
-\begin{equation}\label{eqn:definition_Iy}
-I_y(x,y) = \pd{I(x,y)}{y}.
-\end{equation}
-
- Or you can create equation arrays like
-\begin{align}
-  \alpha &= \beta^\gamma \\
-  x &= \frac{1}{\alpha} \label{eq:cool_1} \\
-  y &= \sqrt{\abs{\frac{\gamma}{\beta}}}  \\
-  \zeta &= x^y \label{eq:cool_2}.
-\end{align}
-
-
-The lines in the array can be referenced by saying things like: In
-Eqn.~\eqref{eq:cool_1} we show a wonderful equation, but it's not nearly as
-amazing as Eqn.~\eqref{eq:cool_2}.
+\section{State of the art}

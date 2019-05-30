@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{filecontents}
+
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[no markers,
+			xmin=0, xmax=1,
+            ymin=1, ymax=3,
+            xlabel=$n/N$,
+            ylabel=$\omega_n^h/\omega_n$,
+            width=0.6\textwidth,
+            height=0.4\textwidth,
+            legend style={at={(.4,.9)}, nodes={scale=1, transform shape}},]
+	\addplot table [] {spectrum_c0.txt};
+    \addplot table [] {spectrum_c1.txt};
+    \legend{OB-$Q_5$ $C^0$\\OB-$Q_5$ $C^1$\\}
+    \end{axis}
+\end{tikzpicture}
+\end{document}
