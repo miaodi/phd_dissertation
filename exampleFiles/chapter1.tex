@@ -5,22 +5,22 @@
     table/search path={{figures/chapter1/data},{data}},
 }
 
-Isogeometric analysis, introduced by Hughes et al.~\cite{HUGHES20054135}, leverages computer aided design (CAD) representations directly in finite element analysis. It has been shown that this approach can alleviate the model preparation burden of going from a CAD design to an analysis model and improve overall solution accuracy and robustness~\cite{bazilevs2006isogeometric, da2011some, da2014mathematical}. Additionally, the higher-order smoothness inherent in CAD basis functions make it possible to solve higher-order partial differential equations, e.g. the biharmonic equation~\cite{kapl_isogeometric_2015, kapl_isogeometric_2017}, the Kirchhoff-Love shell problem~\cite{kiendl2009isogeometric, kiendl2010bending, kiendl2015isogeometric} and the Cahn-Hilliard equation~\cite{gomez2008isogeometric, borden2014higher} directly without resorting to complex mixed discretization schemes.\par
+In classical finite element analysis, $80\%$ of overall analysis time is devoted to mesh generation and cleanup, whereas only $20\%$ of overall time is actually devoted to analysis~\cite{cottrell2009isogeometric}. Isogeometric analysis, introduced by Hughes et al.~\cite{HUGHES20054135}, leverages computer aided design (CAD) representations directly in finite element analysis (see Figure~\ref{fig:flow_chart}). It has been shown that this approach can alleviate the model preparation burden of going from a CAD design to an analysis model and improve overall solution accuracy and robustness~\cite{bazilevs2006isogeometric, da2011some, da2014mathematical}. Additionally, the higher-order smoothness inherent in CAD basis functions make it possible to solve higher-order partial differential equations, e.g. the biharmonic equation~\cite{kapl_isogeometric_2015, kapl_isogeometric_2017}, the Kirchhoff-Love shell problem~\cite{kiendl2009isogeometric, kiendl2010bending, kiendl2015isogeometric} and the Cahn-Hilliard equation~\cite{gomez2008isogeometric, borden2014higher} directly without resorting to complex mixed discretization schemes.\par
 
 \begin{figure}[ht]
 	\captionsetup[subfigure]{labelformat=empty, font = footnotesize}
 	\centering
-	\begin{subfigure}[b]{0.46\textwidth}
+	\begin{subfigure}[b]{0.47\textwidth}
 		\centering
-		\includegraphics[scale=1]{flow-chart-fem}
-		\caption{A geometry}
+		\includegraphics[scale=1.2]{flow-chart-fem}
+		\caption{FEA workflow}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.46\textwidth}
+	\begin{subfigure}[b]{0.47\textwidth}
 		\centering
-		\includegraphics[scale=1]{flow-chart-iga}
-		\caption{Trimmed model}
+		\includegraphics[scale=1.2]{flow-chart-iga}
+		\caption{IGA workflow}
 	\end{subfigure}
-	\caption{A geometry and two modelling strategies: trimming and reparameterization.}
+	\caption{A comparison of the workflows between classical finite element analysis and isogeometric analysis. FEA workflow: meshing and cleanup are required. Note that the meshing process does not preserve the original CAD geometry. IGA workflow: using the CAD model directly in the finite element analysis. }
 	\label{fig:flow_chart}
 \end{figure}
 
@@ -112,6 +112,8 @@ From the analysis perspective, the pointwise satisfaction of continuity constrai
 
 Whereas the Lagrange multiplier method applys continuity constraint by Lagrange multipier, leading to a saddle point problem, the mortar method, first introduced by Bernardi~\cite{bernardi_domain_1993}, considers a constrained solution space and gives rise to a positive definite variational problem. Wohlmuth~\cite{wohlmuth2000mortar} used dual basis functions to discretize the Lagrange multiplier spaces, which further simplifies the mortar formulation. Dual basis functions for the piecewise linear elements are illustrated in Figure~\ref{fig:mortar_basis}. A dual mortar method for isogeometric analysis was first developed by Seitz et al.~\cite{seitz_isogeometric_2016}. \par
 
+Applying constraints by the Lagrange multiplier method leads to a saddle point problem, of which the discrete Lagrange multiplier basis functions cannot be chosen independently of that of the primal variable and special treatment is required to ensure the solvability and optimality of the discretized system. The stiffness matrix for the discrete problem arising from the Lagrangian multiplier method always contains both positive and negative eigenvalues, for which iterative methods are known to be less efficient than for symmetric positive definite systems. The perturbed Lagrangian method alleviate these issues by appending a weighted quadratic penalty term to the energy functional. The main drawback of the perturbed Lagrangian method is the inconsistency with the original problem. It has been utilized in \cite{simo1985perturbed} for contact problems and \cite{dornisch2011boundary, apostolatos2015domain} for domain decomposition problems in the isogeometric analysis framework.\par
+
 To fully circumvent the inf-sup condition for imposing Dirichlet boundary conditions by Lagrange multiplier, Barbosa et. al. \cite{barbosa1991finite} added a new penalty like term to the energy functional to enhance the stability. Unlike perturbed Lagrangian methods where the penalty term is inconsistent with the original problem, the new term proposed by Barbosa maintains the consistency. It has been demonstrated that there is a close connection with the stablized Lagrange multiplier method and Nitsche's method in the context of setting the Dirichlet boundary conditions \cite{stenberg1995some} and in the context of domain decomposition \cite{hansbo2005lagrange, hansbo_nitsches_2005, juntunen2015connection}. Tur et. al. \cite{tur2015modified} utilized this method to solve both small and large deformation contact problems and obtained optimal convergence rates for linear elements. To our knowledge, this method has not been applied in the isogeometric analysis framework yet. \par
 
 The discontinuous Galerkin method (or Nitsche's method) was introduced in 1971 \cite{nitsche_uber_1971} for handling Dirichlet boundary conditions in the weak sense. The discontinuous Galerkin method resembles a mesh-dependent penalty method. Unlike the standard penalty method, which is not consistent unless the penalty coefficient goes to infinity, the discontinuous Galerkin method is consistent with the original problem. Moreover, no additional unknown (Lagrange multiplier) is needed and no discrete inf-sup condition must be fulfilled, contrarily to mixed methods. Meanwhile, additional terms are added into the weak form to ensure the ellipticity of the problem. The discontinuous Galerkin method has been widely studied in various aspects, including imposing boundary conditions \cite{hansbo_nitsches_2005}, domain decomposition \cite{becker_finite_2003} and contact problems \cite{chouly_symmetric_2015}. In the field of the Isogeometric analysis, the discontinuous Galerkin method has been utilized to impose Dirichlet boundary conditions for trimmed spline meshes \cite{embar_imposing_2010}. The first article discussing the discontinuous Galerkin method based domain decomposition strategy was written by Apostolatos \textit{et al.} \cite{apostolatos_nitsche-type_2014}. Nguyen \textit{et al.} extended it to three-dimensional problems in \cite{nguyen_nitsches_2014}. Guo \textit{et al.} \cite{guo_nitsches_2015} proposed a Nitsche's method for coupling Kirchhoff-Love NURBS shell patches.\par
@@ -127,5 +129,14 @@ The discontinuous Galerkin method (or Nitsche's method) was introduced in 1971 \
 \end{figure}
 
 \section{Research contributions}
+
+In this dissertation, the dual mortar framework for most prevailing higher-order partial differential equations (including biharmonic problems, Cahn-Hilliard problems and Kirchhoff-Love shell problems) are developed. The primary contributions of this dissertation are:
+\begin{itemize}
+    \item An isogeometric B\'ezier dual mortar method for the biharmonic problem on multi-patch domains are developed. The well-posedness of the discrete biharmonic problem requires a discretization with $C^1$ continuous basis functions. In order to preserve the sparsity of the coupled problem, we develop a dual mortar suitable $C^1$ constraint and utilize the \Bezier dual basis to discretize the Lagrange multiplier spaces. We prove that this approach leads to a well-posed discrete problem and specify requirements to achieve optimal convergence. 
+    \item Enriched dual basis
+    \item Kirchhoff-Love shell
+    \item The application of \Bezier dual basis functions is extended to alleviate transverse shear locking in Timoshenko beams and volumetric locking in nearly compressible linear elasticity. Interpreting the well-known $\bar{B}$ projection in two different ways we develop two formulations for locking problems in beams and nearly incompressible elastic solids.  One formulation leads to a sparse symmetric symmetric system and the other leads to a sparse non-symmetric system. The use of B\'ezier dual basis produces sparse stiffness matrices with only a slight increase in bandwidth when compared to standard displacement-based methods. 
+    \item An isogeometric analysis code in C++ is developed. Eigen library~\cite{eigenweb} is adopted as the primary linear solver. The assembly routine is multi-threaded by the thread module in the Standard Template Library (STL). This code is capable of handling nonlinear dyanmic problems with higher mesh resolution. 
+\end{itemize}
 
 \section{Organization of the dissertation}
