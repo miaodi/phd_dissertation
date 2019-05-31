@@ -5,6 +5,8 @@
   table/search path={{figures/chapter3/data},{data}},
 }
 
+In this dissertation, we assume that some form of reparameterization has been performed (see Figure~\ref{fig:geometries} on the right) on a CAD model to either remove some or all of the trimming curves and/or to restructure the underlying patch layout to improve the parameterization (e.g., reduce degree, distortion, complexity, etc.). However, we relax the requirement that adjacent patches share a consistent parameterization along shared edges and instead introduce a dual mortaring along the shared interfaces. Relaxing this requirement can simplify the reparameterization process leading to more robust approaches~\cite{xu2011parameterization}. This dual mortaring can be built into the simulation technology directly or can be used to build a weakly continuous basis which can then be used for either design or analysis. The present work leverages B\'ezier dual mortaring along each patch interface. In particular, in this work, the B\'ezier dual mortaring approach, introduced in~\cite{zou2018isogeometric}, is extended to biharmonic problems, which require the weak satisfaction of $C^1$ continuity. To preserve the sparsity of the condensed linear system, we propose a dual mortar suitable $C^1$ constraint and the corresponding Lagrange multiplier. Several different treatments of extraordinary points are considered. Numerical benchmarks illustrate the accuracy and robustness of the proposed method for both $2^\text{nd}$ and $4^\text{th}$ order problems.\par
+
 \section{The dual mortar method}
 \label{sec:dual-mortar-method}
 We introduce the dual mortar method in the context of an abstract formulation for a constrained problem: find $u\in\mathcal{X}$ and $\lambda\in\mathcal{M}$ such that
