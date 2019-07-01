@@ -1,0 +1,31 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{varwidth}
+\usepackage{enumitem}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\begin{tikzpicture}
+\draw (0,0) rectangle (4,1);
+\draw[-{Straight Barb[left]}] (4.07,1) -- (4.07,0.8);
+\draw[-{Straight Barb[left]}] (4.07,.75) -- (4.07,.55);
+\draw[-{Straight Barb[left]}] (4.07,.5) -- (4.07,.3);
+\draw[-{Straight Barb[left]}] (4.07,.25) -- (4.07,0.05);
+\draw[|-|] (-.1,0) -- (-.1,1);
+\draw[|{Stealth}-{Stealth}|] (0,-.3) -- (4,-.3)  node [midway,fill=white] {$L$};
+\draw[|{Stealth}-{Stealth}|] (2,0) -- (2,1)  node [near start, right] {$D$};
+\draw[-{Stealth}] (0,.5) --(.4,.5);
+\draw[-{Stealth}] (0,.5) --(0,.1);
+\node at (.5,.5) {$x$};
+\node at (.15,.2) {$y$};
+\node at (-.4,.5) {$\Gamma_D$};
+\node at (4.5,.5) {$P$};
+\node[draw,right] at (5,.5) [draw, align=left]
+{$E=1000$\\
+$\nu=0.4999999$\\
+$P=1000$\\
+$L=8$\\
+$D=2$};
+\end{tikzpicture}
+\end{document}

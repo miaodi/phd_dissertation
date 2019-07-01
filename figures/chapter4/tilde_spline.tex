@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage[rgb]{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{../mystyle}
+\usetikzlibrary{calc}
+\pgfplotsset{compat=1.14}
+
+
+\begin{document}
+\begin{tikzpicture}
+        \begin{axis}[   hide axis,
+        					  % only scale the axis, not the axis including the ticks and labels
+        						scale only axis=true,
+        					 % set `width' and `height' to the desired values
+        						width=0.8\textwidth,
+      						  height=0.2\textwidth
+        ]
+                
+                        \addplot+[restrict x to domain=.45:.55, line width=0.2mm, smooth, no marks, hred, opacity=1, solid] table[x=x,y expr=\thisrow{N11}*0.4082] {b-splines.txt} node[pos=0.9,anchor=north]{\scriptsize $\tilde{N}_i$};
+                        \addplot+[restrict x to domain=.55:.60, line width=0.2mm, smooth, no marks, hred, opacity=1, solid] table[x=x,y expr=\thisrow{N11}*-0.8165] {b-splines.txt};
+                        \addplot+[mark=*,mark options={fill=white},mark size=1, color=black, solid, line width=0.25mm] plot coordinates {
+                            (0,    0)
+                            (1.0/20,   0)
+                            (2.0/20,   0)
+                            (3.0/20,    0)
+                            (4.0/20,    0)
+                            (5.0/20,    0)
+                            (6.0/20,    0)
+                            (7.0/20,    0)
+                            (8.0/20,    0)
+                            (9.0/20,    0)
+                            (10.0/20,    0)
+                            (11.0/20,   0)
+                            (12.0/20,   0)
+                            (13.0/20,    0)
+                            (14.0/20,    0)
+                            (15.0/20,    0)
+                            (16.0/20,    0)
+                            (17.0/20,    0)
+                            (18.0/20,    0)
+                            (19.0/20,    0)
+                            (20.0/20,    0)};
+                        \draw [fill=orange, opacity = .08,draw=none] (.4,-.42) rectangle (.65,.3) ;
+                        \node at (.0,-.1) {$0$};
+                        \node at (1.,-.1) {$1$};
+        \end{axis}
+\end{tikzpicture}
+\end{document}

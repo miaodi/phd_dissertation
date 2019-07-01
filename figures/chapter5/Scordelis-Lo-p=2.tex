@@ -1,0 +1,51 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[grid=major,xmin=0,xmax=7500,
+			yticklabel style={scaled ticks=false,
+					/pgf/number format/fixed,
+					/pgf/number format/precision=5},
+			legend columns=4,
+			legend style={at={(.98,.4)}},
+			transpose legend,
+			xlabel= Degrees of freedom,
+			ylabel=Displacement (m),
+			width= 1.2\textwidth,
+			height= 1.2\textwidth,
+		]
+
+		\addplot [mark=*, black] coordinates {
+				(300,	-0.23809897721)
+				(972,	-0.295702595728)
+				(3468,	-0.300237752649)
+				(13068,	-0.300558363038)
+			};
+
+		\addplot [mark=square*, hblue] coordinates {
+				(246,	-0.366728214814)
+				(600,	-0.275992855639)
+				(1776,	-0.299874376653)
+				(6000,	-0.300613217996)
+			};
+
+		\addplot [mark=triangle*, hred] coordinates {
+				(246,	-0.385597220196)
+				(600,	-0.260527912316)
+				(1776,	-0.297530071508)
+				(6000,	-0.300368199417)
+			};
+
+		\addplot [dashed] coordinates {
+				(200,	-0.300592457)
+				(7500,	-0.300592457)
+			};
+		\legend{$Q_2$\\B-$Q_2$\\G-$Q_2$\\}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

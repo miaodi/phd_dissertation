@@ -1,0 +1,177 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\pgfplotsset{compat=newest}
+
+\begin{document}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        legend columns=4,
+    	legend style={at={(1,1.3)}, nodes={scale=.85, transform shape}},
+        xlabel=$h$,
+        ylabel=${\|u-u^{h}\|_{L^2}}/{\|u\|_{L^2}}$ 
+    ]
+
+    \addplot [color=red,mark=triangle] plot coordinates {
+
+        (.5,        0.0540211)
+        (.25,       0.00476779)
+        (.125,      0.000473768)
+        (.0625,     5.43266e-05)
+        (0.03125,   7.13601e-06)
+        (0.015625,  8.87949e-07)
+    };
+
+    
+    \addplot [color=blue,mark=triangle] plot coordinates {
+
+        (.5,        0.0050549)
+        (.25,       0.000710654)
+        (.125,      3.72101e-05)
+        (.0625,     2.30733e-06)
+        (0.03125,   1.3171e-07)
+        (0.015625,  7.7915e-09)
+    };
+
+    \addplot [color=black,mark=triangle] plot coordinates {
+
+        (.5,        0.00121345)
+        (.25,       0.000196152)
+        (.125,      2.70371e-05)
+        (.0625,     5.85846e-07)
+        (0.03125,   1.59705e-08)
+        (0.015625,  4.00512e-10)
+    };
+
+    \addplot [color=green!75!black,mark=triangle] plot coordinates {
+
+
+        (.5,        0.00012541)
+        (.25,       0.000133665)
+        (.125,      3.99973e-06)
+        (.0625,     1.20199e-08)
+        (0.03125,   1.04364e-10)
+        (0.015625,  1.60424e-12)
+    };
+
+    
+    \addplot [color=red,mark=diamond, every mark/.append style={solid}, dotted] plot coordinates {
+
+        (.5,        0.0549279)
+        (.25,       0.00448002)
+        (.125,      0.000553861)
+        (.0625,     7.85194e-05)
+        (0.03125,   1.10222e-05)
+        (0.015625,  1.57305e-06)
+    };
+
+    
+    \addplot [color=blue,mark=diamond, every mark/.append style={solid}, dotted] plot coordinates {
+
+        (.5,        0.00487501)
+        (.25,       0.00174691)
+        (.125,      0.000471521)
+        (.0625,     0.000117208)
+        (0.03125,   1.81535e-05)
+        (0.015625,  2.48821e-06)
+    };
+
+    \addplot [color=black,mark=diamond, every mark/.append style={solid}, dotted] plot coordinates {
+
+        (.5,        0.00296772)
+        (.25,       0.00261956)
+        (.125,      0.000360666)
+        (.0625,     0.00013428)
+        (0.03125,   2.3006e-05)
+        (0.015625,  3.22512e-06)
+    };
+
+    \addplot [color=green!75!black,mark=diamond, every mark/.append style={solid}, dotted] plot coordinates {
+
+
+        (.5,        0.000419873)
+        (.25,       0.000351055)
+        (.125,      0.000182621)
+        (.0625,     0.000124582)
+        (0.03125,   2.39309e-05)
+        (0.015625,  3.43181e-06)
+    };
+
+
+    \addplot [color=red,mark=square, every mark/.append style={solid}, dashed] plot coordinates {
+
+        (.5,        0.0540211)
+        (.25,       0.00418785)
+        (.125,      0.000447791)
+        (.0625,     5.35916e-05)
+        (0.03125,   6.62458e-06)
+        (0.015625,  8.2576e-07)
+    };
+
+    
+    \addplot [color=blue,mark=square, every mark/.append style={solid}, dashed] plot coordinates {
+
+        (.5,        0.0050549)
+        (.25,       0.000649483)
+        (.125,      3.34496e-05)
+        (.0625,     1.9708e-06)
+        (0.03125,   1.21373e-07)
+        (0.015625,  7.55866e-09)
+    };
+
+    \addplot [color=black,mark=square, every mark/.append style={solid}, dashed] plot coordinates {
+
+        (.5,        0.00121345)
+        (.25,       8.49788e-05)
+        (.125,      2.20057e-06)
+        (.0625,     6.51548e-08)
+        (0.03125,   2.01519e-09)
+        (0.015625,   6.29404e-11)
+    };
+
+    \addplot [color=green!75!black,mark=square, every mark/.append style={solid}, dashed] plot coordinates {
+
+
+        (.5,        0.00012541)
+        (.25,       1.25793e-05)
+        (.125,      1.57084e-07)
+        (.0625,     2.24237e-09)
+        (0.03125,   3.41247e-11)
+        (0.015625,  5.29509e-13)
+    };
+
+    \logLogSlopeTriangle{0.16}{0.075}{0.06}{6}{green!75!black};
+    \logLogSlopeTriangle{0.16}{0.075}{0.22}{5}{black};
+    \logLogSlopeTriangle{0.16}{0.075}{0.38}{4}{blue};
+    \logLogSlopeTriangle{0.16}{0.075}{0.535}{3}{red};
+    % \addplot [black] plot coordinates {
+
+    %     (0.03125,    4.0000e-03)
+    %     (0.015625,    .001)
+    % } node[pos=0.5,anchor=north]{$2$};
+
+    % \addplot [black] plot coordinates {
+
+    %     (0.03125,    2.5600e-05)
+    %     (0.015625,   1.6e-6)
+    % } node[pos=0.5,anchor=north]{$4$};
+
+    % \addplot [black] plot coordinates {
+
+    %     (0.03125,    2.5600e-06)
+    %     (0.015625,   8e-8)
+    % } node[pos=0.5,anchor=north]{$5$};
+
+    % \addplot [black] plot coordinates {
+
+    %     (.0625,    1.9200e-05)
+    %     (0.03125,  3e-7)
+    % } node[pos=0.5,anchor=north]{$6$};
+
+    \legend{Enrich-$Q_2$\\Enrich-$Q_3$\\Enrich-$Q_4$\\Enrich-$Q_5$\\B\'ezier-$Q_2$\\B\'ezier-$Q_3$\\B\'ezier-$Q_4$\\B\'ezier-$Q_5$\\$L^2$-$Q_2$\\$L^2$-$Q_3$\\$L^2$-$Q_4$\\$L^2$-$Q_5$\\}
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\end{document}

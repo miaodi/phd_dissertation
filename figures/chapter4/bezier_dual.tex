@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{../mystyle}
+
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[x=3cm,y=4cm,axis lines=none,xmin=-0.02,xmax=3.02,cycle list name=colorbrewer-nine-color, scale only axis]
+        \foreach \f in {0,1,2}\addplot+[no markers,ultra thick, smooth, line cap=round] table [y expr=\thisrow{N\f}/18, x=x]{bezier_dual_omega_0.txt};
+        \foreach \f in {3,4,5}\addplot+[no markers,ultra thick, smooth, line cap=round] table [y expr=\thisrow{N\f}/18, x=x]{bezier_dual_omega_1.txt};
+        \foreach \f in {6,7,8}\addplot+[no markers,ultra thick, smooth, line cap=round] table [y expr=\thisrow{N\f}/18, x=x]{bezier_dual_omega_2.txt};
+        \addplot+[mark=*,color=black,ultra thick] coordinates {
+            (0.0,0)
+            (1.0,0)
+            (2.0,0)
+            (3.0,0)
+        };
+        % \node at (axis cs:.18, -0.1) {$\Omega_0$};
+        % \node at (axis cs:.5, -0.1) {$\Omega_1$};
+        % \node at (axis cs:.84, -0.1) {$\Omega_2$};
+
+        % \node[anchor=south] at (axis cs:0.07,.85) {$B^0_0$};
+        % \node[anchor=south] at (axis cs:0.166,0.48) {$B^0_1$};
+        % \node[anchor=south] at (axis cs:0.26,.85) {$B^0_2$};
+        % \node[anchor=south] at (axis cs:0.4,.85) {$B^1_0$};
+        % \node[anchor=south] at (axis cs:0.5,.48) {$B^1_1$};
+        % \node[anchor=south] at (axis cs:0.6,.85) {$B^1_2$};
+        % \node[anchor=south] at (axis cs:0.73,.85) {$B^2_0$};
+        % \node[anchor=south] at (axis cs:0.833,.48) {$B^2_1$};
+        % \node[anchor=south] at (axis cs:0.93,.85) {$B^2_2$};
+    \end{axis}
+\end{tikzpicture}
+\end{document}

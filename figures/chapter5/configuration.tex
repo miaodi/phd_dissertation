@@ -1,0 +1,175 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{tikz,pgfplots}
+
+\usetikzlibrary{hobby}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1, use Hobby shortcut]
+  \tikzstyle{every node}=[font=\small]
+  \coordinate (Or) at(0,0);
+  \draw[color = black!25, line width=1.5pt]
+  (-.03, -.63)..
+  (-.53,-.91)..
+  (-.92,-1.25)..
+  (-1.15,-1.54)..
+  (-1.15,-1.65)..
+  (-.95,-1.7)..
+  (.07, -1.5)..
+  (.95,-1.49)..
+  (1.46,-1.61)
+  ;
+
+  \draw[name path = A, draw = none]
+  (3.18, 1.05)..
+  (2.7,.58)..
+  (2.45,-.95)..
+  (1.81,-1.35)
+  ;
+  \draw[name path = B, draw = none]
+  (3.18, 1.05)..
+  (1.73,1.01)..
+  (0,.57)..
+  (-1.07,0)..
+  (-1.43, -.26)..
+  (-1.76,-.61)..
+  (-1.81,-.89)..
+  (-1.56,-.91)..
+  (-.95, -.78)..
+  (0,-.66)..
+  (.79,-.7)..
+  (1.23,-.88)..
+  (1.81,-1.35)
+  ;
+  \path[%draw=red,
+    fill=blue!20,intersection segments={of=A and B,
+        sequence={L2[reverse]--R2}}];
+
+  \draw[color = black!25, line width=1.5pt]
+  (-1.15, -1.65)..
+  (-1.81, -.89)..
+  (-2.34, .21);
+
+  \draw[color = black!25, line width=1.5pt]
+  (3.2,1.88)..
+  (.82,1.64)..
+  (-1.05,1.15)..
+  (-1.88,.79)..
+  (-2.20,.58)..
+  (-2.35,.25)..
+  (-2.07,.15)..
+  (-.27,.41)..
+  (1.03,.44)..
+  (1.88,-.14);
+  % \node[circle,fill=black,inner sep=1.5pt] at (.07, -1.56){};
+  \draw[-latex, line width=.7pt] (0,0) -- (1.88,.16) node[below, black, pos = .5] {$\mathbf{A}_1$};
+  \draw[-latex, line width=.7pt] (0,0) -- (1.41,1.03) node[above left, black, pos = .5] {$\mathbf{A}_2$};
+  \draw[-latex, line width=.7pt] (0,0) -- (-0.4050, 1.0980) node[left, black, pos = .5] {$\mathbf{A}_3$};
+
+  \draw[line width=.5pt] (0,0)..(-1.125, 3.05);
+  \node[left] at (-1.125, 3.05) {$\theta^3$};
+  \draw[line width=.5pt] (0,0)..(1.52, -.16)..(3, -.72);
+  \node[below] at (3, -.72) {$\theta^1$};
+  \draw[line width=.5pt] (0,0)..(1.66, .87)..(3.6, 1.52);
+  \node[below] at (3.6, 1.52) {$\theta^2$};
+
+  \coordinate (Ors) at  (-.45,1.22);
+  \draw[-latex, line width=.7pt] (Ors) -- (1.38,1.64) node[below, black, pos = .8] {$\mathbf{G}_1$};
+  \draw[-latex, line width=.7pt] (Ors) -- (.79, 2.44) node[above left, black, pos = .8] {$\mathbf{G}_2$};
+  \draw[-latex, line width=.7pt] (Ors) -- (-0.9000, 2.4400) node[left, black, pos = .8] {$\mathbf{G}_3$};
+  \node at (1.8, 3){Reference configuration};
+
+
+  \begin{scope}[shift={(8,-.6)},rotate=-25]
+    \coordinate (Oc) at(0,0);
+    \draw[color = black!25, line width=1.5pt]
+    (-.03, -.63)..
+    (-.53,-.91)..
+    (-.92,-1.25)..
+    (-1.15,-1.54)..
+    (-1.15,-1.65)..
+    (-.95,-1.7)..
+    (.07, -1.5)..
+    (.95,-1.49)..
+    (1.46,-1.61)
+    ;
+
+    \draw[name path = A, draw = none]
+    (3.18, 1.05)..
+    (2.7,.58)..
+    (2.45,-.95)..
+    (1.81,-1.35)
+    ;
+    \draw[name path = B, draw = none]
+    (3.18, 1.05)..
+    (1.73,1.01)..
+    (0,.57)..
+    (-1.07,0)..
+    (-1.43, -.26)..
+    (-1.76,-.61)..
+    (-1.81,-.89)..
+    (-1.56,-.91)..
+    (-.95, -.78)..
+    (0,-.66)..
+    (.79,-.7)..
+    (1.23,-.88)..
+    (1.81,-1.35)
+    ;
+    \path[%draw=red,
+      fill=blue!20,intersection segments={of=A and B,
+          sequence={L2[reverse]--R2}}];
+
+    \draw[color = black!25, line width=1.5pt]
+    (-1.15, -1.65)..
+    (-1.81, -.89)..
+    (-2.34, .21);
+
+    \draw[color = black!25, line width=1.5pt]
+    (3.2,1.88)..
+    (.82,1.64)..
+    (-1.05,1.15)..
+    (-1.88,.79)..
+    (-2.20,.58)..
+    (-2.35,.25)..
+    (-2.07,.15)..
+    (-.27,.41)..
+    (1.03,.44)..
+    (1.88,-.14);
+    % \node[circle,fill=black,inner sep=1.5pt] at (.07, -1.56){};
+    \draw[-latex, line width=.7pt] (0,0) -- (1.88,.16) node[below, black, pos = .5] {$\mathbf{a}_1$};
+    \draw[-latex, line width=.7pt] (0,0) -- (1.41,1.03) node[above left, black, pos = .5] {$\mathbf{a}_2$};
+    \draw[-latex, line width=.7pt] (0,0) -- (-0.4050, 1.0980) node[left, black, pos = .5] {$\mathbf{a}_3$};
+
+    \draw[line width=.5pt] (0,0)..(-1.125, 3.05);
+    \node[left] at (-1.125, 3.05) {$\theta^3$};
+    \draw[line width=.5pt] (0,0)..(1.52, -.16)..(3, -.72);
+    \node[below] at (3, -.72) {$\theta^1$};
+    \draw[line width=.5pt] (0,0)..(1.66, .87)..(3.6, 1.52);
+    \node[below] at (3.6, 1.52) {$\theta^2$};
+
+    \coordinate (Ocs) at  (-.45,1.22);
+    \draw[-latex, line width=.7pt] (Ocs) -- (1.38,1.64) node[below, black, pos = .8] {$\mathbf{g}_1$};
+    \draw[-latex, line width=.7pt] (Ocs) -- (.79, 2.44) node[above left, black, pos = .8] {$\mathbf{g}_2$};
+    \draw[-latex, line width=.7pt] (Ocs) -- (-0.9000, 2.4400) node[left, black, pos = .8] {$\mathbf{g}_3$};
+    \node[above] at (1.8, 3){Current configuration};
+
+  \end{scope}
+
+  \def\myshift#1{\raisebox{1.5ex}}
+  \draw [-{Latex[length=3mm,width=1mm]}] (Or) to [out=10,in=160] node [below, pos = .5] {$\mathbf{u}$} (Oc) ;
+  \draw [-{Latex[length=3mm,width=1mm]},postaction={decorate,decoration={text along path,text align=center,text={|\small\myshift|Deformation of an arbitrary material point}}}] (Ors) to [out=10,in=160]  (Ocs) ;
+
+  \begin{scope}[shift={(-1,-4)}]
+    \coordinate (O) at (0,0);
+    \draw[-latex, line width=.7pt]  (O) -- (-1.3,-.75) node[below right, black, pos = .8] {$x_1$};
+    \draw[-latex, line width=.7pt]  (O) -- (1.3,-.75) node[below left, black, pos = .8] {$x_2$};
+    \draw[-latex, line width=.7pt]  (O) -- (0,1.5) node[left, black, pos = .7] {$x_3$};;
+  \end{scope}
+  \draw[-{Latex[length=3mm,width=1mm]}] (O) --(Or) node[below right, black, pos = .6] {$\mathbf{R}$};
+  \draw[-{Latex[length=3mm,width=1mm]}] (O) --(Oc) node[below right, black, pos = .6] {$\mathbf{r}$};
+  \draw[-{Latex[length=3mm,width=1mm]}] (O) --(Ors) node[above left, black, pos = .6] {$\mathbf{X}$};
+  \draw[-{Latex[length=3mm,width=1mm]}] (O) --(Ocs) node[below right, black, pos = .6] {$\mathbf{x}$};
+\end{tikzpicture}
+\end{document}

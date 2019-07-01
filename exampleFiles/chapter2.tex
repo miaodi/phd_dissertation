@@ -27,11 +27,26 @@ where the binomial coefficient $\binom {p}{i}=\dfrac{p!}{i!(p-i)!}$, $0\leq{i}\l
         B_p^p(\xi)
     \end{bmatrix}.
 \end{equation}
+The Bernstein basis of degree $p$ spans the space of polynomials of degree $p$. The Gramian matrix $\mathbf{G}^p = [G_{i,j}^p]$ can be computed by
+\begin{equation}
+    G_{i,j}^p=\int_0^1B_i^p(\xi) B_j^p(\xi)d\xi,\qquad{i,j\in\left\{0,1,\dots, p\right\}}.\label{eq:gramian_bernstein}
+\end{equation}
+Eq.~\eqref{eq:gramian_bernstein} can be evaluated in closed form (see~\cite{farouki1988algorithms}) as
+\begin{equation}
+    G_{i,j}^p = \frac{\binom {p}{i}\binom {p}{j}}{(2p+1)\binom {2p}{i+j}}\label{eq:gramian_bernstein_closed_form}
+\end{equation}
+and its inverse (see~\cite{juttler1998dual}) as
+\begin{equation}
+    [G_{i,j}^p]^{-1} = \frac{(-1)^{i+j}}{\binom {p}{i}\binom {p}{j}}\sum_{k=0}^{\min(i,j)}\binom{p+k+1}{p-i}\binom{p-k}{p-i}\binom{p+k+1}{p-j}\binom{p-k}{p-j}.\label{eq:inverse_gramian_bernstein_closed_form}
+\end{equation}
 A Bernstein basis defined over an arbitrary interval $\left[\xi_\alpha,\xi_\beta\right]$ can be evaluated from
 \begin{equation}
     B_i^p(\frac{\xi-\xi_\alpha}{\xi_\beta-\xi_\alpha}),\qquad \xi\in\left[\xi_\alpha,\xi_\beta\right].
 \end{equation}
-For the sake of simplicity, we use the same symbols to represent the Bernstein basis defined on different intervals. \par
+The corresponding Gramian and inverse can be obtained by multiplying and dividing the matrices in Eq.~\eqref{eq:gramian_bernstein_closed_form} and Eq.~\eqref{eq:inverse_gramian_bernstein_closed_form} by the scaling factor $(\xi_\beta-\xi_\alpha)$, respectively. For the sake of simplicity, we use the same symbols to represent the Bernstein basis defined on different intervals. A closed form expression for the $L^2$ inner product between the Bernstein basis $B_i^p(\xi)$ and polynomial $\xi^j$ is given by
+\begin{equation}
+    \int_0^1 B_i^p (\xi) \xi^j d\xi = \binom{p}{i} \frac{(i+j)! (p-i)!}{(p+j+1)!}.\label{eq:inner_product_bernstein_polynomial}
+\end{equation}
 
 Bernstein basis possess the following properties:
 \begin{itemize}
@@ -169,14 +184,57 @@ Given control points $\mathbf{P}^e$, the corresponding B\'ezier control points $
 \begin{equation}
     \mathbf{Q}^e=(\mathbf{C}^e)^T\mathbf{P}^e.
 \end{equation}
-A graphical depiction of B\'{e}zier extraction is shown in Figure~\ref{fig:extraction_and_projection}.
+A graphical depiction of B\'{e}zier extraction over an element is shown in Figure~\ref{fig:element_extraction_projection}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=.8\linewidth]{elements_global.pdf}
-    \caption{Illustration of B\'ezier extraction and projection in one dimension for a B-spline of degree 2 and knot vector $\left\{0,0,0,1/3/2/3,1,1,1\right\}$ (restricted to the second element for illustrative purposes).}
-    \label{fig:extraction_and_projection}
+    \begin{subfigure}{\linewidth}
+        \center
+        \includegraphics[width=.7\linewidth]{elements_global.pdf}
+        \caption{}\label{fig:element_extraction_projection}
+    \end{subfigure}
+    \begin{subfigure}{\linewidth}
+        \center
+        \includestandalone[scale = .8]{bezier_extraction_demo}
+        \caption{}\label{fig:bezier_extraction_process}
+    \end{subfigure}
+    \caption{Illustration of \Bezier extraction and projection in one dimension for a B-spline of degree 2 and knot vector $\left\{0,0,0,1/3/2/3,1,1,1\right\}$. (a) The element extraction and projection for the second element. (b) \Bezier extraction over the entire domain.}
 \end{figure}
+
+It is possible to view \Bezier projection as a global assembly procedure. The B-spline basis vector $\mathbf{N}$ of dimension $n_N$ can be represented by a set of Bernstein basis functions $\mathbf{B}$ of dimension $n_B$ defined on each element as
+\begin{equation}
+	\mathbf{N} = \mathbf{A}^T\mathbf{C}\mathbf{B},
+\end{equation}
+where $\mathbf{C}$ is a block diagonal matrix with \Bezier element extraction operators on the diagonal and the rectangular assembly operator $\mathbf{A}$ is the permutation matrix that maps local element degrees of freedom to global degrees of freedom. The assembly operator $\mathbf{A}$ satisfies the following properties:
+\begin{itemize}
+	\item Each row of $\mathbf{A}$ contains a single unity-valued entry; all other entries are zero.
+	\item Each column of $\mathbf{A}$ contains at most $p+1$ unity-valued entries; all other entries are zero.
+	\item Compact support. The non-zero entries can be associated to no more than $p+1$ consecutive elements.
+	\item If we consider the column vectors $\mathbf{A}_i$ of $\mathbf{A}$, the space $\spn\left\{\mathbf{A}_i\right\}_{i=0}^{n_N-1}$ is an $n_N$ dimensional subspace of $\mathbb{R}^{n_B}$ and $\left\{\mathbf{A}_i\right\}_{i=0}^{n_N-1}$ are orthogonal, i.e.
+	      \begin{equation}
+		      \mathbf{A}_i\cdot\mathbf{A}_j\neq{}0\iff{i=j}.
+	      \end{equation}
+\end{itemize}
+
+The \Bezier extraction process for the quadratic B-spline basis defined by the knot vector $\{0,0,0,1/3,2/3,1,1,1\}$ is shown in Fig.~\ref{fig:bezier_extraction_process}. The assembly operator $\mathbf{A}$ for this example is given by
+\begin{equation}\label{eq:assembly_matrix}
+	\mathbf{A} =
+	\begin{blockarray}{cccccc}
+		N_0 & N_1  & N_2  & N_3  & N_4 \\
+		\begin{block}{[ccccc]c}
+			1 & \hfsetfillcolor{hred!10}\hfsetbordercolor{hred}\tikzmarkin{a}(0.1,-0.1)(-0.1,0.35)0 & 0 & 0 & 0 & N_0^0 \\
+			0 & 1 & 0 & 0 & 0 & N_1^0 \\
+			0 & 0 & 1 & 0 & 0 & N_2^0 \\
+			0 & 1 & 0 & 0 & 0 & N_0^1 \\
+			0 & 0 & 1 & 0 & 0 & N_1^1 \\
+			0 & 0 & 0\tikzmarkend{a} & 1 & 0 & N_2^1 \\
+			0 & 0 & 1 & 0 & 0 & N_0^2 \\
+			0 & 0 & 0 & 1 & 0 & N_1^2 \\
+			0 & 0 & 0 & 0 & 1 & N_2^2 \\
+		\end{block}
+	\end{blockarray},
+\end{equation}
+where the highlighted submatrix is the restriction of $\mathbf{A}$ onto elements $\Omega_0$ and $\Omega_1$, and onto the B-spline basis functions $N_1$ and $N_2$.
 
 \subsection{B\'ezier projection}
 \label{sec:bproject}
@@ -185,7 +243,7 @@ B\'{e}zier projection can be viewed as the inverse of extraction~\cite{thomas_be
 \begin{equation}
     \mathbf{P}^e=(\mathbf{R}^e)^T\mathbf{Q}^e
 \end{equation}
-where $\mathbf{Q}^e$ is any field in B\'ezier form. The action of the element reconstruction operator is depicted graphically in Figure~\ref{fig:extraction_and_projection}. For example, given any function $u \in L^2$, we can compute $\mathbf{Q}^e$ as
+where $\mathbf{Q}^e$ is any field in B\'ezier form. The action of the element reconstruction operator is depicted graphically in Figure~\ref{fig:element_extraction_projection}. For example, given any function $u \in L^2$, we can compute $\mathbf{Q}^e$ as
 \begin{equation}
     \mathbf{Q}^e=(\mathbf{G}^e)^{-1}\mathbf{F}^e
     \label{eq:element-Qi}
@@ -213,7 +271,7 @@ B\'ezier projection onto NURBS functions can be defined in an analogous manner~\
 The individual steps comprising the \Bezier projection algorithm are
 illustrated in Figure~\ref{fig:loc-proj-example} where
 the curve defined by $\vec{f}(t)=\left( \frac{t}{3}
-\right)^{3/2}\vec{e}_1+\frac{1}{10}\sin (\pi t )\,\vec{e}_2$,
+    \right)^{3/2}\vec{e}_1+\frac{1}{10}\sin (\pi t )\,\vec{e}_2$,
 $t\in[0,3]$ is projected onto the quadratic B-spline basis defined by
 the knot vector $\left\{0,0,0,\frac{1}{3},\frac{2}{3},1,1,1\right\}$. For this example,
 the algorithm proceeds as follows:

@@ -1,0 +1,110 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\begin{document}
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        legend columns=4,
+    	legend style={at={(1,1.2)}, nodes={scale=1, transform shape}},
+        xlabel=dof,
+        xmin=3,xmax=100,
+        ylabel=Condition Number 
+    ]
+
+
+    \addplot [color=red,mark=triangle] plot coordinates {
+
+
+        (4,     82.924)
+        (6,     322.37)
+        (10,    1687.8)
+        (18,    7761)
+        (34,    33319 )
+        (66,    1.381e5)
+    };
+
+    
+    \addplot [color=blue,mark=triangle] plot coordinates {
+
+
+        (5,     790)
+        (7,     2688)
+        (11,    34334)
+        (19,    3.52e5)
+        (35,    3.2e6)
+        (67,    2.7e7)
+    };
+
+    \addplot [color=black,mark=triangle] plot coordinates {
+
+
+        (6,     8202)
+        (8,     21077)
+        (12,    5.02e5)
+        (20,    1.17e7)
+        (36,    2.29e8)
+        (68,    4.06e9)
+    };
+
+    \addplot [color=green,mark=triangle] plot coordinates {
+
+
+        (7,     88402)
+        (9,     1.72e5)
+        (13,    5.63e6)
+        (21,    3.04e8)
+        (37,    1.29e10)
+        (69,    4.77e11)
+    };
+
+    
+    \addplot [color=red,mark=triangle, dashed] plot coordinates {
+
+        (4,   82.924)
+        (6,   153)
+        (10,  153)
+        (18,  153)
+        (34,  153)
+        (66,  153)
+    };
+
+    \addplot [color=blue,mark=triangle, dashed] plot coordinates {
+
+
+        (5,     790)
+        (7,     2688)
+        (11,    2688)
+        (19,    2688)
+        (35,    2688)
+        (67,    2688)
+    };
+
+    \addplot [color=black,mark=triangle, dashed] plot coordinates {
+
+
+        (6,     8202)
+        (8,     21077)
+        (12,    50033)
+        (20,    50033)
+        (36,    50033)
+        (68,    50033)
+    };
+
+    \addplot [color=green,mark=triangle, dashed] plot coordinates {
+
+
+        (7,     88402)
+        (9,     1.72e5)
+        (13,    9.61e5)
+        (21,    9.61e5)
+        (37,    9.61e5)
+        (69,    9.61e5)
+    };
+
+    \legend{A-\ref{alg:modification_weight} $Q_2$\\A-\ref{alg:modification_weight} $Q_3$\\A-\ref{alg:modification_weight} $Q_4$\\A-\ref{alg:modification_weight} $Q_5$\\A-\ref{alg:modification_weight_new} $Q_2$\\A-\ref{alg:modification_weight_new} $Q_3$\\A-\ref{alg:modification_weight_new} $Q_4$\\A-\ref{alg:modification_weight_new} $Q_5$\\}
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\end{document}
+

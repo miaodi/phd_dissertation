@@ -1,0 +1,134 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{
+        matrix,
+    }
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+			legend columns=1,
+			legend cell align={left},
+			legend style={at={(.3,.95)}, nodes={scale=1, transform shape}, column sep=.1cm},
+			grid=major,
+			xmin=0,
+			xmax=5,
+			ymin=0,
+			ymax=4,
+			xlabel= {Displacements at points A, B and C},
+			ylabel= Pulling force at point A ($\times 10000$),
+			width=.18*4\textwidth,
+			height=.18*3\textwidth,
+		]
+
+		\addplot[mark=*, only marks, black] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*4] {
+				(.00, 0)
+				(.05, 1.260)
+				(.10, 1.707)
+				(.15,	1.936)
+				(.20, 	2.079)
+				(.25,	2.180)
+				(.30,	2.257)
+				(.35,	2.321)
+				(.40,	2.376)
+				(.45,	2.425)
+				(.50,	2.473)
+				(.55,	2.577)
+				(.60,	2.618)
+				(.65,	2.648)
+				(.70,	2.672)
+				(.75,	2.692)
+				(.80,	2.710)
+				(.85,	2.726)
+				(.90,	2.741)
+				(.95,	2.755)
+				(1.0,	2.768)
+			};
+
+		\addplot[mark=*, only marks, red] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*4] {
+				(.00, 0)
+				(.05, 1.471)
+				(.10, 2.217)
+				(.15,	2.641)
+				(.20, 	2.904)
+				(.25,	3.087)
+				(.30,	3.227)
+				(.35,	3.342)
+				(.40,	3.443)
+				(.45,	3.539)
+				(.50,	3.653)
+				(.55,	4.171)
+				(.60,	4.274)
+				(.65,	4.338)
+				(.70,	4.385)
+				(.75,	4.423)
+				(.80,	4.455)
+				(.85,	4.483)
+				(.90,	4.508)
+				(.95,	4.530)
+				(1.0,	4.551)
+			};
+
+		\addplot[mark=*, only marks, blue] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*4] {
+				(.00, 0)
+				(.05, 1.493)
+				(.10, 2.293)
+				(.15,	2.792)
+				(.20, 	3.106)
+				(.25,	3.310)
+				(.30,	3.452)
+				(.35,	3.556)
+				(.40,	3.632)
+				(.45,	3.688)
+				(.50,	3.718)
+				(.55,	3.518)
+				(.60,	3.452)
+				(.65,	3.410)
+				(.70,	3.378)
+				(.75,	3.353)
+				(.80,	3.332)
+				(.85,	3.313)
+				(.90,	3.297)
+				(.95,	3.283)
+				(1.0,	3.269)
+			};
+
+
+		\addplot[smooth, black] table [col sep=space,
+				x expr=\thisrow{a},
+				y expr=\thisrow{f}*.2] {Q3_E_cylindrical.txt};
+
+		\addplot[smooth, red] table [col sep=space,
+				x expr=\thisrow{b},
+				y expr=\thisrow{f}*.2] {Q3_E_cylindrical.txt};
+
+		\addplot[smooth, blue] table [col sep=space,
+				x expr=\thisrow{c},
+				y expr=\thisrow{f}*.2] {Q3_E_cylindrical.txt};
+
+		\addplot[smooth, black, dashed] table [col sep=space,
+				x expr=\thisrow{a}*.9985,
+				y expr=\thisrow{f}*.2] {Q3_E_cylindrical.txt};
+
+		\addplot[smooth, red, dashed] table [col sep=space,
+				x expr=\thisrow{b}*.9992,
+				y expr=\thisrow{f}*.2] {Q3_E_cylindrical.txt};
+
+		\addplot[smooth, blue, dashed] table [col sep=space,
+				x expr=\thisrow{c}*.9992,
+				y expr=\thisrow{f}*0.2] {Q3_E_cylindrical.txt};
+		\legend{$u_3$-A Sze\\$-u_1$-B Sze\\$-u_1$-C Sze\\$u_3$-A B-$Q_3$\\$-u_1$-B B-$Q_3$\\$-u_1$-C B-$Q_3$\\$u_3$-A G-$Q_3$\\$-u_1$-B G-$Q_3$\\$-u_1$-C G-$Q_3$\\}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

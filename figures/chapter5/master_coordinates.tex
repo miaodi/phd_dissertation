@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{csvsimple}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+\usetikzlibrary{backgrounds}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{arrows}
+\usepackage{relsize}
+\usepackage{filecontents}
+\usetikzlibrary{hobby}
+\tikzset{fontscale/.style = {font=\relsize{#1}}
+	}
+
+\begin{document}
+\begin{tikzpicture}[scale = 1, use Hobby shortcut,axis/.style={thick,  ->, >=stealth'}]
+	\filldraw[fill=gray!40!white, draw=black, ultra thick] (0,0) -- node[sloped,midway,below] {south} (5,0) -- node[sloped,midway,below] {east}  (5, 5) --node[sloped,midway,above] {north}  (0, 5) -- node[sloped,midway,below] {west}  cycle;
+
+	\begin{scope}[shift={(.3,.3)}]
+		\draw[axis] (0,0)  -- (.6,0) node[right]
+		{$\theta^1_m$};
+		\draw[axis] (0,0)  -- (0,.6) node[above]
+        {$\theta^2_m$};
+	\end{scope}
+
+	\begin{scope}[shift={(3.3,0)}, rotate=90]
+		\draw[axis] (0,0)  -- (.7,-.3) node[right]
+		{$\bar{\theta}^1\vert_{\Omega_m}$};
+		\draw[axis] (0,0)  -- (0,.8) node[above]
+        {$\bar{\theta}^2\vert_{\Omega_m}$};
+	\end{scope}
+
+	\begin{scope}[shift={(5,1.5)}, rotate=180]
+		\draw[axis] (0,0)  -- (.7,-.3) node[above]
+		{$\bar{\theta}^1\vert_{\Omega_m}$};
+		\draw[axis] (0,0)  -- (0,.8) node[right]
+        {$\bar{\theta}^2\vert_{\Omega_m}$};
+	\end{scope}
+
+	\begin{scope}[shift={(1.5,5)}, rotate=-90]
+		\draw[axis] (0,0)  -- (.7,-.3) node[below]
+		{$\bar{\theta}^1\vert_{\Omega_m}$};
+		\draw[axis] (0,0)  -- (0,.8) node[below]
+        {$\bar{\theta}^2\vert_{\Omega_m}$};
+	\end{scope}
+
+	\begin{scope}[shift={(0,2.3)}, rotate=0]
+		\draw[axis] (0,0)  -- (.7,-.3) node[above]
+		{$\bar{\theta}^1\vert_{\Omega_m}$};
+		\draw[axis] (0,0)  -- (0,.8) node[right]
+        {$\bar{\theta}^2\vert_{\Omega_m}$};
+	\end{scope}
+\end{tikzpicture}
+\end{document}

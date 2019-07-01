@@ -1,0 +1,23 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.3}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[grid=major,width=8cm,
+height=8cm,xmin=0,xmax=20,
+width=.3*4\textwidth,
+height=.3*3\textwidth,
+legend style={at={(0.27,1)}},
+transpose legend,
+xlabel= Position $y$,
+ylabel= Relative error ${\vert{\theta-\Theta}\vert}/{\vert\Theta\vert}$
+]
+	\addplot+[mark=none, color = hred, ultra thick, smooth] table [y=Y, x=X]{T-beam-global-error0.txt}; 
+	\addplot+[mark=none, color = hblue, ultra thick, smooth] table [y=Y, x=X]{T-beam-bezier-error0.txt}; 
+    \legend{$G-Q_3$\\$B-Q_3$\\}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

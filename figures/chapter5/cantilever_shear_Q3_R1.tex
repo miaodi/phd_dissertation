@@ -1,0 +1,99 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{
+        matrix,
+    }
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+			legend columns=2,
+			legend cell align={left},
+			legend style={at={(1,.28)}, nodes={scale=1, transform shape}, column sep=.1cm},
+			grid=major,
+			xmin=0,
+			xmax=8.5,
+			ymin=0,
+			ymax=4,
+			xlabel=Tip deflections,
+			ylabel=End traction load,
+			width=.3*4\textwidth,
+			height=.3*3\textwidth,
+		]
+
+		\addplot[mark=*, only marks, black] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*4] {
+				(.00, 0)
+				(.05, 0.026)
+				(.10, 0.103)
+				(.15,	.224)
+				(.20, 	.381)
+				(.25,	.563)
+				(.30,	 .763)
+				(.35,	.971)
+				(.40,	1.184)
+				(.45,	1.396)
+				(.50,	1.604)
+				(.55,	1.807)
+				(.60,	2.002)
+				(.65,	2.190)
+				(.70,	2.370)
+				(.75,	2.541)
+				(.80,	2.705)
+				(.85,	2.861)
+				(.90,	3.010)
+				(.95,	3.151)
+				(1.0,	3.286)
+			};\label{plot:reference_NU}
+
+		\addplot[mark=*, only marks, red] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*4] {
+				(.00, 0)
+				(.05, 0.663)
+				(.10, 1.309)
+				(.15,	1.922)
+				(.20, 	2.493)
+				(.25,	3.015)
+				(.30,	 3.488)
+				(.35,	3.912)
+				(.40,	4.292)
+				(.45,	4.631)
+				(.50,	4.933)
+				(.55,	5.202)
+				(.60,	5.444)
+				(.65,	5.660)
+				(.70,	5.855)
+				(.75,	6.031)
+				(.80,	6.190)
+				(.85,	6.335)
+				(.90,	6.467)
+				(.95,	6.588)
+				(1.0,	6.698)
+			};\label{plot:reference_W}
+
+
+		\addplot[smooth, black] table [col sep=space,
+				x expr=10-\thisrow{x},
+				y expr=\thisrow{f}*4] {Q3_R1_E.txt};
+
+		\addplot[smooth, red] table [col sep=space,
+				x expr=\thisrow{z},
+				y expr=\thisrow{f}*4] {Q3_R1_E.txt};
+
+		\addplot[smooth, black, dashed] table [col sep=space,
+				x expr=10-\thisrow{x},
+				y expr=\thisrow{f}*4] {Q3_R1_G.txt};
+
+		\addplot[smooth, red, dashed] table [col sep=space,
+				x expr=\thisrow{z},
+				y expr=\thisrow{f}*4] {Q3_R1_G.txt};
+		\legend{$-u_x$ Sze\\$u_z$ Sze\\$-u_x$ B-$Q_3$\\$u_z$ B-$Q_3$\\$-u_x$ G-$Q_3$\\$u_z$ G-$Q_3$\\}
+	\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{
+        matrix,
+    }
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+			legend columns=3,
+			legend cell align={left},
+			legend style={at={(1,1.2)}, nodes={scale=1, transform shape}, column sep=.1cm},
+			grid=major,
+			xmin=0,
+			xmax=20,
+			ymin=0,
+			ymax=.8,
+			xlabel=Vertical deflections at points A and B,
+			ylabel=End traction load,
+			width=.3*4\textwidth,
+			height=.3*3\textwidth,
+		]
+
+		\addplot[mark=*, only marks, black] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*.8] {
+				(.00, 0)
+				(.05, 2.455)
+				(.10, 4.277)
+				(.15,	5.649)
+				(.20, 	6.725)
+				(.25,	7.602)
+				(.30,	8.340)
+				(.35,	8.974)
+				(.40,	9.529)
+				(.45,	10.023)
+				(.50,	10.468)
+				(.55,	10.876)
+				(.60,	11.257)
+				(.65,	11.620)
+				(.70,	11.970)
+				(.75,	12.310)
+				(.80,	12.642)
+				(.85,	12.966)
+				(.90,	13.282)
+				(.95,	13.590)
+				(1.0,	13.891)
+			};\label{plot:reference_NU}
+
+		\addplot[smooth, black] table [col sep=space,
+				x expr=\thisrow{z2},
+				y expr=\thisrow{f}*0.4] {Q3_R0_G_annular.txt};
+
+		\addplot[smooth, black, dashed] table [col sep=space,
+				x expr=\thisrow{z2}*1.005,
+				y expr=\thisrow{f}*0.4] {Q3_R0_G_annular.txt};
+
+		\addplot[mark=*, only marks, red] plot table [ignore chars={(,)},
+				col sep=comma,
+				x expr = \thisrowno{1},
+				y expr=\thisrowno{0}*.8] {
+				(.00, 0)
+				(.05, 3.370)
+				(.10, 5.876)
+				(.15,	7.736)
+				(.20, 	9.160)
+				(.25,	10.288)
+				(.30,	 11.213)
+				(.35,	11.992)
+				(.40,	12.661)
+				(.45,	13.247)
+				(.50,	13.768)
+				(.55,	14.240)
+				(.60,	14.674)
+				(.65,	15.081)
+				(.70,	15.469)
+				(.75,	15.842)
+				(.80,	16.202)
+				(.85,	16.550)
+				(.90,	16.886)
+				(.95,	17.212)
+				(1.0,	17.528)
+			};\label{plot:reference_W}
+
+
+
+		\addplot[smooth, red] table [col sep=space,
+				x expr=\thisrow{z1},
+				y expr=\thisrow{f}*0.4] {Q3_R0_G_annular.txt};
+
+
+		\addplot[smooth, red, dashed] table [col sep=space,
+				x expr=\thisrow{z1}*1.005,
+				y expr=\thisrow{f}*0.4] {Q3_R0_G_annular.txt};
+		\legend{$u_z$-A Sze\\$u_z$-A B-$Q_3$\\$u_z$-A G-$Q_3$\\$u_z$-B Sze\\$u_z$-B B-$Q_3$\\$u_z$-B G-$Q_3$\\}
+	\end{axis}
+\end{tikzpicture}
+\end{document}
