@@ -1,6 +1,24 @@
-\chapter{Conclusions}
+\chapter{Conclusions and future work}
 \label{chp:chapter7}
 \graphicspath{{figures/}{figures/chapter6/}}
 \pgfplotsset{
   table/search path={{figures/chapter6/data},{data}},
 }
+
+In this dissertation, an isogeometric analysis based patch coupling framework for higher order PDEs is developed. Mathematical analysis and numerical examples veriefy the accuracy and robustness of this technology. The use of dual basis with compact support significantly increases the sparsity of the constrained linear system and reduces the computational cost. In addition, this technology provides a unified formulation when dealing with vertices with different valences, which makes it an ideal analysis technology for higher order problems over unstructured meshes. The main contributions can be summarized as:
+\begin{itemize}
+  \item Formulation of abstract dual mortar method for both homogeneous and non-homogeneous constraints.
+  \item Development of \Bezier dual mortaring framework for higher order problems, including biharmonic problem, phase-field problem and Kirchhoff-Love shell problem.
+  \item Development and implementation of different vertex treatments for multi-patch coupling problem.
+  \item Development of the enriched \Bezier dual basis, which improves the approximation ability of the \Bezier dual basis.
+  \item Development and implementation of two locking-free formulations for both Timoshenko beam and linear elasticity problem. 
+  \item Implementation of a C++ based multi-thread isogeometric analysis code which is utilized in:
+  \begin{itemize}
+    \item Simulations of Poisson and biharmonic problems
+    \item Simulations of linear elasticity and Timoshenko beam problems
+    \item Simulations of phase field problems
+    \item Simulations of Kirchhoff-Love shell problems
+  \end{itemize}
+\end{itemize}
+
+There exist many potential future work we can perspect from this work. From the modelling aspect, a potential extension of the present work is to use the constrained NURBS patches directly as the design space. However, 

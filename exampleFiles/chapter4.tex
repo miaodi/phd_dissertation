@@ -684,7 +684,7 @@ We next consider a homogeneous biharmonic problem over the domain $\left[0, 1\ri
 \begin{equation}
 	u(x,y)=\sin(2\pi{x})^2\sin(2\pi{y})^2.
 \end{equation}
-The discretization and the manufactured solution are depicted in Figure.~\ref{fig:biharmonic_mesh}. This benchmark has also been studied in [].
+The discretization and the manufactured solution are depicted in Figure.~\ref{fig:biharmonic_mesh}.
 \begin{figure}[ht]
 	\center
 	\begin{subfigure}[t]{.45\linewidth}
@@ -925,7 +925,7 @@ In the second case, we do not take $\bar{u}$ as a constant, but we vary it linea
 \begin{equation}
 	\frac{ \partial u}{ \partial \mathbf{n}} = 0, \;\; \text{on }\partial \Omega.
 \end{equation}
-This boundary condition can be incorporated into the dual mortar formulation by solving localized null space problems over each extraordinary points on the boundary. For the detail, see []. \par
+This boundary condition can be incorporated into the dual mortar formulation by solving localized null space problems over each extraordinary points on the boundary. \par
 
 The mesh and the structural evolution of the concentration distribution are demonstrated in Figure.~\ref{fig:phase_field_linear}. Four patches are discretized into $63 \times 63$, $65 \times 65$, $65 \times 65$ and $63 \times 63$ cubic elements, correspondingly. In this case, three morphologies are formed in different regions of the domain. On the left-hand side of the domain, the red phase nucleates into the blue one. The exact opposite occurs on the right-hand side. In the middle, where $u\approx 0.5$, we observe the striped pattern typical from spinodal decomposition. Whereas the nucleation process is dominated in the middle region, the structural evolution at the boundaries $x = 0$ and $x = 2$ hardly exists. Eventually, the interface develops into a straight line at $x = 1$, which is consistent with the behavior of the exact solution.\par
 

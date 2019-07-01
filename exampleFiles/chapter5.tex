@@ -5,7 +5,7 @@
 	table/search path={{figures/chapter5/data},{data}},
 }
 
-\subsection{Dual mortar method for non-homogeneous constraints}\label{sec:dual_mortar}
+\section{Dual mortar method for non-homogeneous constraints}\label{sec:dual_mortar}
 
 We briefly demonstrate the dual mortar method in the context of an abstract formulation for a constrained problem: find $u\in\mathcal{X}$ and $\lambda\in\mathcal{M}$ such that
 \begin{subequations}\label{eq:LM-form}
@@ -916,7 +916,7 @@ Fig.~\ref{fig:scordelis_displacement} shows the vertical displacement of the mid
 
 \begin{figure}[h]
 	\center
-	\includestandalone[scale=.8]{Scordelis-Lo_convergence}
+	\includestandalone[scale=1]{Scordelis-Lo_convergence}
 	\caption{The convergence plot for the Scordelis-Lo roof problem.}\label{fig:convergence_scordelis}
 \end{figure}
 \FloatBarrier
@@ -938,13 +938,13 @@ Fig.~\ref{fig:scordelis_displacement} shows the vertical displacement of the mid
 	\caption{The geometry and mesh setup of the pinched hemisphere shell problem.}\label{fig:hemisphere}
 \end{figure}
 
-In this example, we consider a hemispherical shell pinched at the top and subjected to four radial point loads (see Fig.~\ref{fig:hemisphere-config}). The bottom circumferential edge of the hemisphere is free. The thickness of the shell is $t = 0.04$ and the material properties are $E = 6.825\times{}10^7$ and $\nu = 0.3$. The hemispherical is decomposed into twelve patches as shown in Figure~\ref{fig:hemisphere_decompose-2}. Note that the twelve-patch parameterization is degeneracy-free. The radial displacement at the point A is considered as the benchmark quantity and a reference value is given as $u_x = 0.0924$~\cite{kiendl2009isogeometric}.\par
+In this example, we consider a hemispherical shell pinched at the top and subjected to four radial point loads (see Fig.~\ref{fig:hemisphere-config}). The bottom circumferential edge of the hemisphere is free. The thickness of the shell is $t = 0.04$ and the material properties are $E = 6.825\times{}10^7$ and $\nu = 0.3$. The hemispherical is decomposed into twelve patches as shown in Figure~\ref{fig:hemisphere_decompose-2}. Note that the twelve-patch parameterization is degeneracy-free. The radial displacement at point A is considered as the benchmark quantity and a reference value is given as $u_x = 0.0924$~\cite{kiendl2009isogeometric}.\par
 
 The convergence of the proposed formulation is plotted in Figure~\ref{fig:hemisphere_result}. Convergence is observed for both types of dual basis functions. It seems that, as the mesh is refined, the enriched \Bezier dual basis provides results that are closer to the reference solution.  
 \begin{figure}[h]
 	\center
-	\includestandalone[scale = .8]{twelve-patch-hemisphere}
-	\caption{Relative error of angle between the flange and web along the intersection for (a) a coarse mesh, (b) a fine mesh. }
+	\includestandalone[scale = 1]{twelve-patch-hemisphere}
+	\caption{ Pinched hemispherical shell problem: acomparison of the radial displacement at point A for different dual basis functions and degrees}
 	\label{fig:hemisphere_result}
 \end{figure}
 \FloatBarrier
