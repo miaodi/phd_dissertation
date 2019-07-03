@@ -177,13 +177,19 @@ We now describe how to construct a set of enriched dual basis functions which wi
 
 
 \subsection{An orthonormal basis for the space $\mathbb{R}^{n_B}$}
-To facilitate the construction of the enriched dual basis, we build a set of orthonormal vectors which form a basis for $\mathbb{R}^{n_B}$. Each orthonormal vector will have minimal support, where the support of a vector is taken to be the distance between the first and last nonzero entry. Since the column vectors $\mathbf{A}_i$ of $\mathbf{A}$ are orthogonal to each other, a natural choice for this basis is given by the set of vectors comprising all of the normalized $\{\mathbf{A}_i\}_{i=0}^{n_N-1}$, denoted by $\{\mathbf{A}^n_i\}_{i=0}^{n_N-1}$, and the vectors which span the null space of $\spn\left\{\mathbf{A}_i\right\}_{i=0}^{n_N-1}$, denoted by $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$. Note that the nonzero entries of any $\{\mathbf{A}_i\}_{i=0}^{n_N-1}$ are unity-valued. In addition, each row of $\mathbf{A}$ contains one unity-valued entry.
 
-The vectors $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$ can be found by constructing vectors which are orthonormal to every vector in $\{\mathbf{A}^n_i\}_{i=0}^{n_N-1}$ from $\mathbb{R}^{n_i}$, where $n_i$ is the number of nonzero entries in $\mathbf{A}^n_i${\color{red} I don't follow this statement.}. Note that each $\mathbf{A}^\perp_i$ can be used to construct a function in $\mathcal{X}$ as
+To facilitate the construction of the enriched dual basis, we build a set of orthonormal vectors which form a basis for $\mathbb{R}^{n_B}$. Each orthonormal vector will have minimal support, where the support of a vector is taken to be the distance between the first and last nonzero entry. From the properties of the assembly operator $\mathbf{A}$ in Chapter~\ref{chp:chapter2}, we obtain two observations:
+\begin{itemize}
+	\item Column vectors $\mathbf{A}_i$ of $\mathbf{A}$ are orthogonal to each other.
+	\item Any vectors that are orthogonal to $\mathbf{A}_i$ are also orthogonal to the rest vectors of $\mathbf{A}$, if they share the same non-zero entries as $\mathbf{A}_i$.
+\end{itemize} 
+Hence, a natural choice for this basis is given by the set of vectors comprising all of the normalized $\{\mathbf{A}_i\}_{i=0}^{n_N-1}$, denoted by $\{\mathbf{A}^n_i\}_{i=0}^{n_N-1}$, and the vectors which share the same non-zero entries as vectors in $\spn\left\{\mathbf{A}_i\right\}_{i=0}^{n_N-1}$ and span the null space of $\spn\left\{\mathbf{A}_i\right\}_{i=0}^{n_N-1}$, denoted by $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$. Note that all non-zero entries of any $\{\mathbf{A}_i\}_{i=0}^{n_N-1}$ are unity-valued, a normalized vector $\mathbf{A}^n_i$ can be obtained by dividing the square root of the number of its non-zero entries.\par
+
+Algorithm~\ref{alg:kernel_basis} can be used to efficiently construct the basis vectors $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$. Note that each $\mathbf{A}^\perp_i$ can be used to construct a function in $\mathcal{X}$ as
 \begin{equation}
 	\tilde{N}_i=\left[\mathbf{A}^\perp_i\right]^T \mathbf{CB}.\label{eq:tidle-spline-basis}
 \end{equation}
-Since $\{\mathbf{A}^n_i\}_{i=0}^{n_N-1}$ and $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$ span the space $\mathbb{R}^{n_B}$, $\{N_i\}_{i=0}^{n_N-1}$ and $\{\tilde{N}_i\}_{i=0}^{n_B-n_N-1}$ span the space $\mathcal{X}$. Algorithm~\ref{alg:kernel_basis} can be used to efficiently construct the basis vectors $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$.\par
+Since $\{\mathbf{A}^n_i\}_{i=0}^{n_N-1}$ and $\{\mathbf{A}^\perp_i\}_{i=0}^{n_B-n_N-1}$ span the space $\mathbb{R}^{n_B}$, $\{N_i\}_{i=0}^{n_N-1}$ and $\{\tilde{N}_i\}_{i=0}^{n_B-n_N-1}$ span the space $\mathcal{X}$.\par
 
 
 \begin{algorithm}[H]\label{alg:kernel_basis}
@@ -230,7 +236,7 @@ An initial guess of $\mathbf{W}$ may be given by
 \begin{equation}
 	\mathbf{W}^\text{ini}_i=\mathbf{A}_i/n_i,\label{eq:initial_guess}
 \end{equation}
-where $n_i$ is the number of nonzero entries in $\mathbf{A}_i$, since the number of nonzero entries in $\mathbf{A}_i$ is the same as that in $\mathbf{A}^n_i$ {\color{red} I don't understand thtis statement}. As will be seen in the next section, this initial guess $\mathbf{W}^\text{ini}$ is critical for finding an appropriate $\mathbf{W}^\text{mod}$ with the desired properties.
+where $n_i$ is the number of nonzero entries in $\mathbf{A}_i$. As will be seen in the next section, this initial guess $\mathbf{W}^\text{ini}$ is critical for finding an appropriate $\mathbf{W}^\text{mod}$ with the desired properties.
 
 \subsection{Polynomial preservation}
 We now establish an appropriate $\mathbf{W}^\text{mod}$ such that the quasi-interpolation operator $\quasiid{N}$ preserves a polynomial vector $\mathbf{P}=\left[{1, \xi,\dots,\xi^q}\right]^T$ ($q\leq{}p$), i.e.
@@ -476,7 +482,38 @@ Thanks to Algorithm.~\ref{alg:modification_weight} and Algorithm.~\ref{alg:modif
 	\end{equation}
 	This ends the proof with $C_{st}=C_{gi}C_wC_r\sqrt{C_m}$.
 \end{proof}
-Hence, the enriched dual basis satisfies all assumptions and will yield optimal approximations.
+Hence, the enriched dual basis satisfies all assumptions and will yield optimal approximations. Figure~\ref{fig:enriched_basis_functions} gives an example of enriched \Bezier dual basis functions of the same primal B-spline basis function with different polynomial reproduction orders. As can be seen, the approximation power is improved at the expense of the support size.
+
+\begin{figure}[ht]
+	\center
+	\begin{subfigure}[t]{.45\linewidth}
+		\center
+		\includegraphics[width=.9\columnwidth]{p=3}
+		\caption{A cubic B-spline function}\label{fig:a_cubic_spline}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{.45\linewidth}
+		\center
+		\includegraphics[width=.9\columnwidth]{p=3_c=0}
+		\caption{\Bezier dual basis function of~\ref{fig:a_cubic_spline}}
+	\end{subfigure}\hfil
+	\begin{subfigure}[t]{.45\linewidth}
+		\center
+		\includegraphics[width=.9\columnwidth]{p=3_c=1}
+		\caption{Enriched \Bezier dual basis function of~\ref{fig:a_cubic_spline} that reproduces linear functions}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{.45\linewidth}
+		\center
+		\includegraphics[width=.9\columnwidth]{p=3_c=2}
+		\caption{Enriched \Bezier dual basis function of~\ref{fig:a_cubic_spline} that reproduces quadratic functions}
+	\end{subfigure}\hfil
+	\begin{subfigure}[t]{.45\linewidth}
+		\center
+		\includegraphics[width=.9\columnwidth]{p=3_c=3}
+		\caption{Enriched \Bezier dual basis function of~\ref{fig:a_cubic_spline} that reproduces cubic functions}
+	\end{subfigure}
+	\caption{A cubic B-spline basis function and its corresponding enriched \Bezier dual basis functions with different polynomial reproduction orders. }\label{fig:enriched_basis_functions}
+\end{figure}
+
 \FloatBarrier
 
 \section{Applications to $2^\text{nd}$ order and $4^\text{th}$ order mortar isogeometric analysis}\label{sec:dual_mortar}
@@ -998,3 +1035,8 @@ In both cases, the convergence of the Newton's method is achieved within $3$ int
 
 \section{Conclusion}\label{sec:conlusion}
 
+In this chapter, we develop an enrichment procedure to endow \Bezier dual basis functions with sufficient approximation ability. The cause of sub-optimal convergence of \Bezier dual basis is the lack of polynomial reproduction. The enriched \Bezier dual basis can reproduce polynomial up to a given order though at the expense of a slightly enlarged support size. Owing to the locality, the linear system from static condensation remains sparse. The proposed enrichment methodology is based on the formulation in Oswald et al.~\cite{oswald2001polynomial} and two significant improvements have been made in efficiency and robustness aspects. The proposed formulation is quadrature-free and independent of the mesh size. Hence, the cost in assembly different operators will be eliminated and the effect of the problem scale on the conditioning these operators will be minimized, giving rise to a more efficient and robust formulation. \par
+
+The performance of the enriched \Bezier dual basis is demonstrated via several challenging benchmark problems. These problems include $2^\text{nd}$ order, $4^\text{th}$ order, linear, nonlinear, static and dynamic problems. The proposed dual basis demonstrates optimal convergence and yields compelling results as compared with the global dual basis. The robustness of the proposed dual basis is also confirmed by two highly nonlinear dynamic phase-field problems.\par
+
+% Finally, although the proposed enrichment procedure cures the sub-optimality of \Bezier dual basis at the expense of a slightly enlarged support, we believe there exists a better formulation that can achieve the same performance without any influences on the support size. This is subjected to the future research.
