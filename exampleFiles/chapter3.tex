@@ -517,7 +517,7 @@ where $\mathbf{B}^\text{mod}_b$ is the constraint matrix constructed from the co
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\linewidth]{mesh_spy_modify}
-  \caption{The degrees of freedom (red dots) involved in the constraint matrix $\mathbf{B}_v$ in section~\ref{sec:vertex_modification}.}\label{fig:cross_point_dof_modify}
+  \caption{The activated degrees of freedom (red dots) involved in the constraint matrix $\mathbf{B}_v$ in section~\ref{sec:vertex_modification}.}\label{fig:cross_point_dof_modify}
 \end{figure}
 
 In order to guarantee the well-posedness of the mortar formulation and to improve the approximation, we further apply two continuity constraints at each vertex
@@ -1053,7 +1053,7 @@ on the triangular domain decomposed into three patches as shown in Figure~\ref{f
 		\includegraphics[width=\textwidth]{three_patches_solution-plot}
 		\caption{The manufactured solution}
 	\end{subfigure}
-	\caption{The three-patch domain and the manufactured solution for the problem in Section~\ref{sec:three-patch}.}\label{fig:three_patch_biharmonic_problem}
+	\caption{The non-conforming three-patch domain and the manufactured solution for the problem in Section~\ref{sec:three-patch}.}\label{fig:three_patch_biharmonic_problem}
 \end{figure}
 
 The results are shown in Figure.~\ref{fig:three_patc_biharmonic_convergence}. As can be seen, the MG method yields optimal convergence rates in both measures for all tested polynomial orders. The MB method, on the other hand, yields $\mathcal{O}(h)$ convergence in $H^2_*$ norm and $\mathcal{O}(h^2)$ convergence in $L^2$ norm. The poor performance of the MB method is due to the consistency error, which can be verified by the optimal convergence rates in the approximation error (see Figure~\ref{fig:three_patch_approximation}). Moreover, for $p=3,4,5$, the finite element error increases as the polynomial order increases, which is consistent with the approximation power of the \Bezier dual basis (see Figure~\ref{fig:l_2_error}). Nevertheless, despite the sub-optimal convergence for certain circumstances, the MB method still converges asymptotically for all tested cases. The OG method yields optimal results for all tested polynomial orders except $p=5$. The sub-optimal rate for $p=5$ in both the $L^2$ and $H^2_*$ norms is due to the approximation error (see Figure~\ref{fig:three_patch_approximation}). Although the consistency error still influences the finite element approximation of the OB method, the error level at which the consistency error dominates is much lower ($10^{4}$ times lower in the $L^2$ norm and $10^{3}$ times lower in the $H^2_*$ norm) than that of the MB method. As a result, for $p=2,3,4$, the results obtained from the OB method demonstrate optimal convergence with sub-optimal convergence only occurring at the finest mesh for $p=5$. The approximation error for both the MB and OB methods are optimal for all tested polynomial orders, which indicates the \textit{inf-sup} stability of the proposed method with the \Bezier dual basis.
@@ -1087,7 +1087,7 @@ The results are shown in Figure.~\ref{fig:three_patc_biharmonic_convergence}. As
 	\begin{subfigure}[b]{0.47\textwidth}
 		\includestandalone[scale=.9]{three_patch_projection_basic_H2}
 	\end{subfigure}
-	\caption{Convergence plots of the approximation error for three-patch coupling in Section.~\ref{sec:three-patch}.}\label{fig:three_patch_approximation}
+	\caption{Convergence plots of the approximation error for non-conforming three-patch coupling in Section.~\ref{sec:three-patch}.}\label{fig:three_patch_approximation}
 \end{figure}
 \FloatBarrier
 
@@ -1108,7 +1108,7 @@ To further study the effect of in-domain vertices, we solve a biharmonic problem
 		\includegraphics[width=\textwidth]{five_patch_solution-plot}
 		\caption{The manufactured solution}
 	\end{subfigure}
-	\caption{The five-patch domain parameterization and the manufactured solution in Section~\ref{sec:five-patch}.}\label{fig:five_patch_biharmonic_problem}
+	\caption{The non-conforming five-patch domain parameterization and the manufactured solution in Section~\ref{sec:five-patch}.}\label{fig:five_patch_biharmonic_problem}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1142,7 +1142,7 @@ The convergence behavior for all methods is shown in Figure~\ref{fig:five_patc_b
 	\begin{subfigure}[b]{0.47\textwidth}
 		\includestandalone[scale=.9]{five_patch_projection_basic_H2}
 	\end{subfigure}
-	\caption{Convergence plots of the approximation error for five-patch coupling in Section.~\ref{sec:five-patch}.}\label{fig:five_patch_approximation}
+	\caption{Convergence plots of the approximation error for non-conforming five-patch coupling in Section.~\ref{sec:five-patch}.}\label{fig:five_patch_approximation}
 \end{figure}
 \FloatBarrier
 
@@ -1167,7 +1167,7 @@ The highest computed eigenvalues for the OB method are given in Table~\ref{tab:e
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.3\textwidth]{eigenvalue_mesh}
-	\caption{The nine-patch domain parameterization for the eigenvalue problem in Section~\ref{sec:eigenvalue}.}\label{fig:eigenvalue_mesh}
+	\caption{The non-conforming nine-patch domain parameterization for the eigenvalue problem in Section~\ref{sec:eigenvalue}.}\label{fig:eigenvalue_mesh}
 \end{figure}
 
 \begin{table}[!htbp]
