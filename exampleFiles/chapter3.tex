@@ -795,7 +795,7 @@ Now we may bound the best approximation error of $\mathcal{K}_b^h$ by the best a
   \end{proof}
 \end{theorem}
 
-The optimality of $u^h\in\mathcal{K}_b^h$ in $H^2_*$ requires the \textit{inf-sup} stability of the bilinear functionals $b_0$ and $b_1$. The analytical study of the \textit{inf-sup} stability of these functionals is beyond the scope of this paper. Instead, we demonstrate the approximation ability of $\mathcal{K}_b^h$ by directly conducting $H^2_*$ projection in different numerical examples. We may now give the final estimate:
+The optimality of $u^h\in\mathcal{K}_b^h$ in $H^2_*$ requires the \textit{inf-sup} stability of the bilinear functionals $b_0$ and $b_1$. The analytical study of the \textit{inf-sup} stability of these functionals is beyond the scope of this research. Instead, we demonstrate the approximation ability of $\mathcal{K}_b^h$ by directly conducting $H^2_*$ projection in different numerical examples. We may now give the final estimate:
 \begin{theorem}\label{thm:approximation-of-bezier-formulation}
   Given Assumption~\ref{aspt:inf-sup}, we have that, on a smooth discretization i.e. $\mathbf{F}_i\in \left(C^\infty(\Omega_i)\right)^2$, for any $u\in H^s(\Omega)$,
   \begin{equation}
@@ -889,8 +889,8 @@ To better understand the cause of the poor approximation of the \Bezier dual bas
 	\caption{The Legendre polynomials (\protect\blueline) and the corresponding best $L^2$ approximations (\protect\redline) by $3^\text{rd}$ order B\'ezier dual basis functions defined on a two element domain. B\'ezier dual basis functions can only replicate the constant function.}
 	\label{fig:polynomial_completeness}
 \end{figure}
-The sub-optimality of the \Bezier dual basis may deteriorate the finite element approximation. From Theorem~\ref{thm:approximation-of-bezier-formulation} and an Aubin-Nitsche duality argument, the expected convergence rates of the proposed method with the \Bezier dual basis are $1$ in the $H^2_*$ norm and $2$ in the $L^2$ norm. Although the poor approximation power is currently a flaw in the \Bezier dual basis, its local support and straightforward construction make it an appealing choice in practical use. Additionally, the authors have recently developed a technique that restores the optimal approximation of the \Bezier dual basis without appreciably changing the simplicity of construction. These results will be reported in a forthcoming paper.
-\FloatBarrier
+The sub-optimality of the \Bezier dual basis may deteriorate the finite element approximation. From Theorem~\ref{thm:approximation-of-bezier-formulation} and an Aubin-Nitsche duality argument, the expected convergence rates of the proposed method with the \Bezier dual basis are $1$ in the $H^2_*$ norm and $2$ in the $L^2$ norm. Although the poor approximation power is currently a flaw in the \Bezier dual basis, its local support and straightforward construction make it an appealing choice in practical use. Additionally, we have recently developed a technique that restores the optimal approximation of the \Bezier dual basis without appreciably changing the simplicity of construction. These results will be reported in the following chapter.
+
 
 \subsection{The biharmonic problem on a two-patch domain}\label{sec:two_patch}
 
@@ -999,7 +999,7 @@ For the degree mismatched case shown in Figure~\ref{fig:two_patch_biharmonic_pro
 	\caption{Convergence plots for the mesh shown in Figure~\ref{fig:two_patch_biharmonic_problem_basic} with mismatched degrees. Left: error measured in the $L^2$ norm. Right: error measured in the $H^2_*$ norm.}\label{fig:two_patc_biharmonic_convergence_diff_degree}
 \end{figure}
 
-Although a functional analysis of the contribution of the consistency error in the finite element approximation error is beyond the scope of this paper and postponed for future work, here we study the influence of the consistency error in a numerical manner. Since the finite element error is composed of the approximation error and the consistency error, the effect of the consistency error can be demonstrated by a comparison between the finite element error and the approximation error. The approximation error is the best $H^2_*$ approximation of $u$ in the discretized weak $C^1$ space $\mathcal{K}_b^h$, which is given as: find $u\in\mathcal{K}_b^h$ such that
+Although a functional analysis of the contribution of the consistency error in the finite element approximation error is beyond the scope of this research and postponed for future work, here we study the influence of the consistency error in a numerical manner. Since the finite element error is composed of the approximation error and the consistency error, the effect of the consistency error can be demonstrated by a comparison between the finite element error and the approximation error. The approximation error is the best $H^2_*$ approximation of $u$ in the discretized weak $C^1$ space $\mathcal{K}_b^h$, which is given as: find $u\in\mathcal{K}_b^h$ such that
 \begin{equation}
 	\langle{v^h,u^h}\rangle_{H^2_*}= \langle{v^h,u}\rangle_{H^2_*}\quad\quad\forall{v^h\in\mathcal{K}_b^h}.
 \end{equation}
@@ -1196,6 +1196,8 @@ The highest computed eigenvalues for the OB method are given in Table~\ref{tab:e
 
 \section{Conclusion}\label{sec:conclusion}
 
-In this paper, we present a dual mortar formulation for the biharmonic problem and investigate its properties analytically and numerically. With the help of the dual mortar suitable $C^1$ constraint, the biorthogonality between the dual basis functions and the corresponding primal spline basis functions can be extended to the discretized $C^1$ constraint matrix. Hence, the condensed stiffness matrix can be formed efficiently without the need to solve linear systems associated with each intersection. Furthermore, the condensed stifness matrix remains sparse if the dual basis functions are compactly supported, which is the case for the \Bezier dual basis.\par
+In this chapter, we present a dual mortar formulation for the biharmonic problem and investigate its properties analytically and numerically. With the help of the dual mortar suitable $C^1$ constraint, the biorthogonality between the dual basis functions and the corresponding primal spline basis functions can be extended to the discretized $C^1$ constraint matrix. Hence, the condensed stiffness matrix can be formed efficiently without the need to solve linear systems associated with each intersection. Furthermore, the condensed stifness matrix remains sparse if the dual basis functions are compactly supported, which is the case for the \Bezier dual basis.\par
 
 Due to the presence of in-domain vertices, some control points may serve as both slave and master. To overcome this we propose two solutions. The first method localizes the constraints to the neighborhood of each vertex and solves for the null space of a localized linear system. The second method reduces the number of constraints at each vertex by reducing the number of degrees of freedom of the dual basis. For both cases, when the \Bezier dual basis is used, the resulting linear systems are sparse. A suite of numerical experiments demonstrate the effectiveness of the proposed approach. \par
+
+\clearpage\null\newpage

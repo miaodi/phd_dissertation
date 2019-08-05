@@ -7,7 +7,7 @@
 
 Isogeometric analysis (IGA), introduced by Hughes et al. \cite{HUGHES20054135}, adopts the spline basis, which underlies the CAD geometry, as the basis for analysis. Of particular importance is the positive impact of smoothness on numerical solutions, where, in many application domains, IGA outperforms classical finite elements~\cite{cottrell2009isogeometric,cottrell_studies_2007,cottrell2006isogeometric,hughes_duality_2008,bazilevs_isogeometric_2010,evans_n-widths_2009}.
 
-In this chapter, a brief overview of spline basis functions that are most commonly used in Isogeometric Analysis are given in~\ref{sec:spline_overview}. In~\ref{sec:geometric_algorithms}, we review some of the most popular algorithms in manipulating splines including \Bezier extraction and \Bezier projection. Dual basis serves as the main research tool for this thesis. The concept of dual basis functions is also introduced in~\ref{sec:dual_basis}.
+In this chapter, a brief overview of spline basis functions are given in Section~\ref{sec:spline_overview}. In Section~\ref{sec:geometric_algorithms}, we review some of the most popular algorithms in manipulating splines, including \Bezier extraction and \Bezier projection. Dual basis serves as the main research tool for this thesis. The concept of dual basis functions is also introduced in Section~\ref{sec:dual_basis}.
 
 \section{Splines}\label{sec:spline_overview}
 
@@ -88,7 +88,7 @@ This feature is crucial for both geometry modeling and finite element analysis. 
     \caption[B-spline basis functions of different degrees.]{B-spline basis functions of different degrees. Top: linear spline basis functions defined by $\left\{0,0,1/3,2/3,1,1\right\}$. Bottom: quadratic spline basis functions defined by $\left\{0,0,0,1/3,2/3,1,1,1\right\}$.}\label{fig:spline_basis}
 \end{figure}
 
-B-splines of different degrees are shown in Figure~\ref{fig:spline_basis}. As can be seen, linear B-spline basis functions are identical to the classic hat functions that widely used in finite element analysis. Compared with quadratic Lagrange polynomials in Figure~\ref{fig:lagrange_polynomial}, quadratic B-splines are smoother across each mesh grids. Indeed, B-splines of degree $p$ have up to $p-1$ continuous derivatives. The inter-element continuity can be manipulated by repeating knots. In general, basis functions at knot of multiplicity $m$ are $C^{p-m}$ continuity.
+B-splines of different degrees are shown in Figure~\ref{fig:spline_basis}. As can be seen, linear B-spline basis functions are identical to the classic hat functions that widely used in finite element analysis. Compared with quadratic Lagrange polynomials in Figure~\ref{fig:lagrange_polynomial}, quadratic B-splines are smoother across each mesh grids. Indeed, B-splines of degree $p$ have up to $p-1$ continuous derivatives. The inter-element continuity can be manipulated by repeating knots. In general, basis functions at knot of multiplicity $m$ have $C^{p-m}$ continuity.
 
 \begin{figure}[ht]
     \center\includegraphics[scale=1.2]{p=2_space_2}
